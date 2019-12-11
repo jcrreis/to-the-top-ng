@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Game } from './game'
 import { Observable, of } from 'rxjs';
-
+import axios  from '../utils/axios'
 
 
 
@@ -26,6 +26,10 @@ export class GamesService {
   }
 
   addGame(game: Game){
-    return this.http.post<Game>(this.gamesUrl, game,{withCredentials: true})
+    axios.post<Game>(this.gamesUrl, game).then((response) => {
+      return response.data
+    }).catch((error) => {
+      return error
+    })
   }
 }

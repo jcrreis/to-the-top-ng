@@ -35,7 +35,7 @@ export class LoginformComponent implements OnInit {
 
   login($event): void {
     $event.preventDefault()
-    this.loginService.login(this.username, this.password).subscribe()
+    this.loginService.login(this.username, this.password)
   }
 
 }
