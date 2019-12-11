@@ -5,4 +5,5 @@ export class Game{
   description: string;
   storeLink: string;
   trailerUrl: string;
+  upvotes: number;
 }

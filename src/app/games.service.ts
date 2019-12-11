@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +26,6 @@ export class GamesService {
   }
 
   addGame(game: Game){
-    return this.http.post<Game>(this.gamesUrl, game, this.httpOptions)
+    return this.http.post<Game>(this.gamesUrl, game,{withCredentials: true})
   }
 }

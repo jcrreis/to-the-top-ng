@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -24,7 +25,7 @@ export class SignupService {
       password: password,
       email: email,
     }
-    return this.http.post(this.signupUrl, data, httpOptions)
+    return this.http.post(this.signupUrl, data, {withCredentials: true})
       .pipe(
       );
   }

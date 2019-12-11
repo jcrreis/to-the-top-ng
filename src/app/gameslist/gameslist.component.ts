@@ -9,7 +9,9 @@ import { Game } from '../game'
 })
 export class GameslistComponent implements OnInit {
 
-  @Input() gameIn: Game;
+  @Input() 
+  game: Game 
+
 
   games: Game[];
 
@@ -17,6 +19,15 @@ export class GameslistComponent implements OnInit {
 
   ngOnInit() {
     this.getGames()
+    this.game = {
+      id: null,
+      name: "",
+      price: null,
+      description: "",
+      storeLink: "",
+      trailerUrl: "",
+      upvotes: 0,
+    }
   }
 
   getGames(): void {
@@ -24,7 +35,8 @@ export class GameslistComponent implements OnInit {
   }
 
   addGame(): void{
-    this.gamesService.addGame(this.gameIn).subscribe()
+    this.gamesService.addGame(this.game).subscribe()
+    console.log(this.game)
   }
 
 }

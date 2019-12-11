@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 
-
-import { HttpClientModule,HttpInterceptor,HttpRequest,HttpHandler,HttpEvent, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule,HttpClientXsrfModule,HttpInterceptor,HttpRequest,HttpHandler,HttpEvent, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,15 +14,17 @@ import { GameslistComponent } from './gameslist/gameslist.component';
 
 
 @Injectable()
-export class CustomInterceptor implements HttpInterceptor { 
-
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-        request = request.clone({
-            withCredentials: true
-        });
-
-        return next.handle(request);
+export class AuthenticationInterceptor implements HttpInterceptor {
+    
+    intercept(request:HttpRequest<any>, next:HttpHandler):Observable<HttpEvent<any>> {
+     
+       const clonedRequest =
+            request.clone(
+                {withCredentials: true}
+            );
+        
+        return next.handle(clonedRequest);
+           
     }
 }
 
@@ -39,13 +40,12 @@ export class CustomInterceptor implements HttpInterceptor {
     AppRoutingModule, 
     HttpClientModule,
     FormsModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN',})
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: CustomInterceptor ,
-      multi: true
-    }
+  
   ],
   bootstrap: [AppComponent]
 })

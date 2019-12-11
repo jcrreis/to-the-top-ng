@@ -2,15 +2,17 @@
 
 <ul class="games">
   <li *ngFor="let game of games">
-    <span class="badge">{{game.id}}</span>{{game.name}}
+      <span class="badge">{{game.id}}</span> {{game.name}} 
   </li>
 </ul>
 
+
 <form>
-Name: <input type="text" name="name" value="" [(ngModel)]="gameIn.name"><br>
-Price: <input type="text" name="price" value="" [(ngModel)]="gameIn.price"><br>
-Description: <input type="text" name="description" value="" [(ngModel)]="gameIn.description"><br>
-StoreLink: <input type="text" name="StoreLink" value="" [(ngModel)]="gameIn.storeLink"><br>
-TrailerUrl: <input type="text" name="TrailerUrl" value="" [(ngModel)]="gameIn.trailerUrl"><br>
+Name: <input type="text" name="name" value="" [(ngModel)]="game.name"><br>
+Price: <input type="text" name="price" value="" [(ngModel)]="game.price"><br>
+Description: <input type="text" name="description" value="" [(ngModel)]="game.description"><br>
+StoreLink: <input type="text" name="StoreLink" value="" [(ngModel)]="game.storeLink"><br>
+TrailerUrl: <input type="text" name="TrailerUrl" value="" [(ngModel)]="game.trailerUrl"><br>
 <input type="submit" value="Login" (click)="addGame($event)">
 </form>
+
