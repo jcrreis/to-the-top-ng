@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
+import axios from '../utils/axios'
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,11 @@ export class SignupService {
       password: password,
       email: email,
     }
-    return this.http.post(this.signupUrl, data, {withCredentials: true})
-      .pipe(
-      );
+    axios.post(this.signupUrl, data).then(response => {
+      return response.data
+    }).catch(error =>{
+      return error
+    })
+     
   }
 }

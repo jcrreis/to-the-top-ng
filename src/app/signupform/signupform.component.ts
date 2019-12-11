@@ -44,7 +44,7 @@ export class SignupformComponent implements OnInit {
 
   signup($event): void {
     $event.preventDefault()
-    this.signupService.signup(this.username,this.password,this.email).subscribe()
+    this.signupService.signup(this.username,this.password,this.email)
   }
 
 }
