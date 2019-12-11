@@ -21,8 +21,11 @@ export class GamesService {
 
   constructor(private http: HttpClient) { }
 
-  allGames ():Observable<Game[]>{
-    return this.http.get<Game[]>(this.gamesUrl)
+  allGames (): Game[]{
+    axios.get<Game[]>(this.gamesUrl).then((response)=>{
+      return response.data
+    })
+    return null
   }
 
   addGame(game: Game){
