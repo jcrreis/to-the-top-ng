@@ -31,7 +31,10 @@ export class GameslistComponent implements OnInit {
   }
 
   getGames() {
-    this.games = this.gamesService.allGames()
+   this.gamesService.allGames().subscribe(games => {
+     console.log(games)
+     this.games = games
+   })
   }
 
   addGame(): void{

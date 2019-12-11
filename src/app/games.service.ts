@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Game } from './game'
 import { Observable, of } from 'rxjs';
 import axios  from '../utils/axios'
+import {from} from 'rxjs';
 
 
 
@@ -13,19 +13,10 @@ export class GamesService {
 
   private gamesUrl = 'http://localhost:8000/games/'
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+  allGames (): Observable<Array<Game>>{
+    const observable$ = axios.get<Game[]>(this.gamesUrl)
+    return observable$
    
-  };
-
-
-  constructor(private http: HttpClient) { }
-
-  allGames (): Game[]{
-    axios.get<Game[]>(this.gamesUrl).then((response)=>{
-      return response.data
-    })
-    return null
   }
 
   addGame(game: Game){
