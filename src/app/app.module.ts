@@ -9,7 +9,9 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { SignupformComponent } from './signupform/signupform.component';
 import { GameslistComponent } from './gameslist/gameslist.component';
 import {StoreModule} from '@ngrx/store'
-import { myStoreReducer } from './store/mystore.reducer'
+import { myStoreReducer, reducers } from './store/mystore.reducer'
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -23,7 +25,11 @@ import { myStoreReducer } from './store/mystore.reducer'
     BrowserModule,
     AppRoutingModule, 
     FormsModule,
-    StoreModule.forRoot({myStore: myStoreReducer})  
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
   ],
   providers: [
   

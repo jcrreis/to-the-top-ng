@@ -1,22 +1,35 @@
-import { createReducer,on } from '@ngrx/store'
+import { createReducer,on, ActionReducerMap } from '@ngrx/store'
 import * as StoreActions from './mystore.actions'
-import {Game} from '../game'
+import { Game } from '../game'
+import { User } from '../user'
 
-export interface State {
+
+export interface iState {
+  gameInfo: iGameInfo
+}
+
+export interface iGameInfo {
   gameList: Array<Game> ;
-
+  user: User;
 }
 
-export const initalState: State = {
+export const initialState: iGameInfo = {
       gameList: [],
+      user: null,
 }
+
 
 const _mystoreReducer = createReducer(
-  initalState,
-  on(StoreActions.updateGameList , (state, {gameList}) => ({...state,gameList: gameList})),
-  on(StoreActions.addToGameList, (state,{game}) => ({...state , gameList: [...state.gameList,game]}))
-  
-  )
+  initialState,
+  on(StoreActions.updateGameList , (state, {gameList}) => ({...state, gameList: gameList})),
+  on(StoreActions.addToGameList, (state,{game}) => ({...state , gameList: [...state.gameList,game]})),
+  on(StoreActions.addUserToStore, (state,{user}) => ({...state , user: user}))
+)
+
+export const reducers: ActionReducerMap<iState> = {
+  gameInfo: myStoreReducer
+}
+
 
 export function myStoreReducer(state,action){
   return _mystoreReducer(state,action)

@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-// import { HttpClient, HttpHeaders } from '@angular/common/http';
 import axios from '../utils/axios'
+import { Store } from '@ngrx/store'
+import { iState } from './store/mystore.reducer'
+import { User } from './user'
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { addUserToStore } from './store/mystore.actions';
 
 
 @Injectable({
@@ -12,8 +15,8 @@ import { catchError, retry } from 'rxjs/operators';
 export class LoginService {
 
   private loginUrl = 'http://localhost:8000/login/'
-
-  constructor() { }
+  private userUrl = 'http://localhost:8000/user/'
+  constructor(private store : Store<iState>) { }
 
   login (username: String,password: String){
     
@@ -22,10 +25,17 @@ export class LoginService {
       password: password,
     }
     axios.post(this.loginUrl, data).then((response) => {
-      return response.data
+     axios.get(this.userUrl).then(response => {
+       const dataU = response.data
+       const user: User = {
+         id: dataU['pk'],
+         name: dataU['username'],
+         email: dataU['email']
+       }
+       this.store.dispatch(addUserToStore({user: user}))
+     })
     }).catch((error) => {
       console.log(error)
-      return error
     })
 
   }
