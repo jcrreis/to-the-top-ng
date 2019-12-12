@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store'
 import { iState, iGameInfo } from '../store/mystore.reducer'
 import { User } from '../user'
 import { getUser } from '../store/selectors'
+import { Observable } from 'rxjs';
 
 
 
@@ -22,7 +23,7 @@ export class LoginformComponent implements OnInit {
   @Input()
   password: string = ""
 
-  user: User;
+  user: Observable<User>;
 
 
   constructor(private loginService : LoginService, private store : Store<iState>) { }
@@ -30,13 +31,7 @@ export class LoginformComponent implements OnInit {
 
   ngOnInit() {
     
-    this.store.select(getUser).subscribe(user => {
-      this.user = user
-    })
-    // this.store.pipe(select('user')).subscribe(user => {
-    //   debugger;
-    //   this.user = user
-    // });
+    this.user = this.store.select(getUser)
   }
 
   handleUsernameChange($event){
