@@ -13,6 +13,9 @@ import { myStoreReducer, reducers } from './store/mystore.reducer'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import { GamePageComponent } from './game-page/game-page.component'; 
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginformComponent,
     SignupformComponent,
-    GameslistComponent
+    GameslistComponent,
+    GamePageComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     BrowserAnimationsModule,
+    MatGridListModule,
+    MatCardModule,
   ],
   providers: [
   

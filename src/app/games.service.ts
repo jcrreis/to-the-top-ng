@@ -12,6 +12,7 @@ import { updateGameList } from './store/mystore.actions';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GamesService {
 
   private gamesUrl = 'http://localhost:8000/games/'
@@ -33,5 +34,9 @@ export class GamesService {
     }).catch((error) => {
       return error
     })
+  }
+  getGamebyId(id : Number){
+    const observable = from(axios.get<Game>(this.gamesUrl + id))
+    return observable
   }
 }
