@@ -3,6 +3,9 @@ import { Game } from './game'
 import { Observable, of } from 'rxjs';
 import axios  from '../utils/axios'
 import {from} from 'rxjs';
+import { Store } from '@ngrx/store';
+import { iState } from './store/mystore.reducer';
+import { updateGameList } from './store/mystore.actions';
 
 
 
@@ -13,9 +16,14 @@ export class GamesService {
 
   private gamesUrl = 'http://localhost:8000/games/'
 
-  allGames (): Observable<Array<Game>>{
-    const observable$ = axios.get<Game[]>(this.gamesUrl)
-    return observable$
+  constructor(private store : Store<iState>) { }
+
+  allGames (): void{
+   axios.get<Game[]>(this.gamesUrl).then(response => {
+    this.store.dispatch(updateGameList({gameList: response.data}))
+   }).catch(error => {
+     console.log(error.msg)
+   })
    
   }
 

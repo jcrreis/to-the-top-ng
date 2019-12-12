@@ -1,6 +1,10 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { GamesService } from '../games.service'
 import { Game } from '../game'
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { iState } from '../store/mystore.reducer';
+import { getGameList } from '../store/selectors';
 
 @Component({
   selector: 'app-gameslist',
@@ -13,11 +17,12 @@ export class GameslistComponent implements OnInit {
   game: Game 
 
 
-  games: Game[];
+  games: Observable<Array<Game>>;
 
-  constructor(private gamesService : GamesService) { }
+  constructor(private gamesService : GamesService, private store : Store<iState>) {   }
 
   ngOnInit() {
+    this.games = this.store.select(getGameList)
     this.getGames()
     this.game = {
       id: null,
@@ -31,10 +36,7 @@ export class GameslistComponent implements OnInit {
   }
 
   getGames() {
-   this.gamesService.allGames().subscribe(games => {
-     console.log(games)
-     this.games = games
-   })
+   this.gamesService.allGames()
   }
 
   addGame(): void{
