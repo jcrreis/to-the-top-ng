@@ -1,6 +1,23 @@
-<form>
-Username: <input type="text" name="username" value="" (change)="handleUsernameChange($event)"><br>
-Password: <input type="text" name="password" value="" (change)="handlePasswordChange($event)"><br>
-Email: <input type="text" name="email" value="" (change)="handleEmailChange($event)"><br>
-<input type="submit" value="Signup" (click)="signup($event)">
-</form>
+<mat-form-field appearance="outline">
+  <mat-label>Username</mat-label>
+  <input matInput placeholder="Enter your username" required [type]="text" (change)="handleUsernameChange($event)" value="">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Email Address</mat-label>
+  <input matInput placeholder="Enter your email" required [type]="text" (change)="handleEmailChange($event)" value="">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Password</mat-label>
+  <input matInput placeholder="Enter your password" required [type]="hide ? 'password' : 'hide'" (change)="handlePasswordChange($event)" value="">
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Confirm Password</mat-label>
+  <input matInput placeholder="Enter your password again" required [type]="hide ? 'password' : 'hide'" (change)="handlePasswordConfirmationChange($event)" value="">
+  <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </button>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="signup($event)">Sign up</button>

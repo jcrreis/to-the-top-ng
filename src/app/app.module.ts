@@ -16,6 +16,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import { GamePageComponent } from './game-page/game-page.component'; 
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { HeaderComponent } from './header/header.component';
+
 
 
 @NgModule({
@@ -24,7 +31,8 @@ import { GamePageComponent } from './game-page/game-page.component';
     LoginformComponent,
     SignupformComponent,
     GameslistComponent,
-    GamePageComponent
+    GamePageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +46,11 @@ import { GamePageComponent } from './game-page/game-page.component';
     BrowserAnimationsModule,
     MatGridListModule,
     MatCardModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,    
+    MatInputModule,
   ],
   providers: [
   
