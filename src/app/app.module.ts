@@ -13,6 +13,14 @@ import { myStoreReducer, reducers } from './store/mystore.reducer'
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material';
+import { HeaderComponent } from './header/header.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({
@@ -20,7 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     LoginformComponent,
     SignupformComponent,
-    GameslistComponent
+    GameslistComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +41,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,    
+    MatInputModule,
+    MatCardModule
   ],
   providers: [
   

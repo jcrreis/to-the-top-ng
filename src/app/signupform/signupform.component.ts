@@ -17,6 +17,9 @@ export class SignupformComponent implements OnInit {
 
   @Input()
   email: string = ""
+  
+  @Input()
+  password1: string = ""
 
   games = {}
 
@@ -42,9 +45,20 @@ export class SignupformComponent implements OnInit {
     this.email = $event.target.value
   }
 
+  handlePasswordConfirmationChange($event){
+    $event.preventDefault()
+    this.password1 = $event.target.value
+  }
+
   signup($event): void {
     $event.preventDefault()
-    this.signupService.signup(this.username,this.password,this.email)
+    if(this.password === this.password1){
+      this.signupService.signup(this.username,this.password,this.email)
+    }
+    else{
+      alert("Passwords should match")
+    }
+
   }
 
 }
