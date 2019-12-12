@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Game } from './game'
+import { Game ,GameMinusId} from './game'
 import { Observable, of } from 'rxjs';
 import axios  from '../utils/axios'
 import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
-import { updateGameList } from './store/mystore.actions';
+import { updateGameList,addToGameList } from './store/mystore.actions';
 
 
 
@@ -28,8 +28,9 @@ export class GamesService {
    
   }
 
-  addGame(game: Game){
+  addGame(game: GameMinusId){
     axios.post<Game>(this.gamesUrl, game).then((response) => {
+      this.store.dispatch(addToGameList({game: response.data}))
       return response.data
     }).catch((error) => {
       return error

@@ -7,3 +7,12 @@ export class Game{
   trailerUrl: string;
   upvotes: number;
 }
+
+export class GameMinusId{
+  name: string;
+  price: number;
+  description: string;
+  storeLink: string;
+  trailerUrl: string;
+  upvotes: number;
+}
