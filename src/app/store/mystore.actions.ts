@@ -9,3 +9,5 @@ export const addToGameList = createAction(actionsConst.ADD_TO_GAME_LIST ,
                                             props<{ game: Game } >());
 export const addUserToStore = createAction(actionsConst.LOGIN,
                                             props<{ user: User } >());
+
+export const removeUserFromStore = createAction(actionsConst.LOGOUT);

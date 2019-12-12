@@ -4,4 +4,6 @@ Password: <input type="text" name="password" value="" (change)="handlePasswordCh
 <input type="submit" value="Login" (click)="login($event)">
 </form>
 
-<h1>UserLoggedIn: {{user.name}} </h1>
+
+<h1>UserLoggedIn: {{(user | async).name}} </h1>
+

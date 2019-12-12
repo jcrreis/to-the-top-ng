@@ -23,7 +23,8 @@ const _mystoreReducer = createReducer(
   initialState,
   on(StoreActions.updateGameList , (state, {gameList}) => ({...state, gameList: gameList})),
   on(StoreActions.addToGameList, (state,{game}) => ({...state , gameList: [...state.gameList,game]})),
-  on(StoreActions.addUserToStore, (state,{user}) => ({...state , user: user}))
+  on(StoreActions.addUserToStore, (state,{user}) => ({...state , user: user})),
+  on(StoreActions.removeUserFromStore, (state) => ({...state , user: undefined}))
 )
 
 export const reducers: ActionReducerMap<iState> = {
