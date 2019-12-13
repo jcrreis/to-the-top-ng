@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { from } from 'rxjs';
+
 import axios from '../utils/axios'
 
 @Injectable({
@@ -20,11 +20,8 @@ export class SignupService {
       password: password,
       email: email,
     }
-    axios.post(this.signupUrl, data).then(response => {
-      return response.data
-    }).catch(error =>{
-      return error
-    })
+   const observable= from(axios.post(this.signupUrl, data))
+   return observable
      
   }
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SignupService } from '../signup.service'
+import { first } from 'rxjs/operators';
+import { UserResponseWithPassword } from 'src/utils/interfaces';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,7 +26,7 @@ export class SignupformComponent implements OnInit {
 
   games = {}
 
-  constructor(private signupService : SignupService) { }
+  constructor(private signupService : SignupService,private router:Router) { }
 
   ngOnInit() {
 
@@ -53,7 +56,10 @@ export class SignupformComponent implements OnInit {
   signup($event): void {
     $event.preventDefault()
     if(this.password === this.password1){
-      this.signupService.signup(this.username,this.password,this.email)
+      this.signupService.signup(this.username,this.password,this.email).pipe(first(),)
+      .subscribe(()=> {
+          this.router.navigate(['/login'])
+      })
     }
     else{
       alert("Passwords should match")
