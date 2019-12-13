@@ -7,7 +7,7 @@ import { User } from './user';
 import { getUser } from './store/selectors';
 import { first } from 'rxjs/operators';
 import { UserResponse, GameArrayResponse } from 'src/utils/interfaces';
-import { addUserToStore, updateUpvotedGameList } from './store/mystore.actions';
+import { addUserToStore, updateUpvotedGameList, updateCreatedGameList } from './store/mystore.actions';
 import axios from '../utils/axios';
 
 
@@ -36,6 +36,10 @@ export class AppComponent{
           from(axios.get(this.baseUrl + 'upvotes/users/' + user.id + '/games')).pipe(first(),)
           .subscribe((upvotedGames:GameArrayResponse) => {
             this.store.dispatch(updateUpvotedGameList({upvotedGameList: upvotedGames.data}))
+          })
+          from(axios.get(this.baseUrl + 'users/' + user.id + '/games')).pipe(first(),)
+          .subscribe((createdGames:GameArrayResponse) => {
+            this.store.dispatch(updateCreatedGameList({createdGameList: createdGames.data}))
           })
       }, error => {
         

@@ -30,3 +30,12 @@ export const addToUpvotedGameList = createAction(actionsConst.ADD_TO_UPVOTED_GAM
 
 export const removeFromUpvotedGameList = createAction(actionsConst.REMOVE_FROM_UPVOTED_GAME_LIST,
                                                       props<{gameId: Number}>())
+                                            
+export const updateCreatedGameList = createAction(actionsConst.UPDATE_CREATED_GAME_LIST,
+                                                        props<{createdGameList: Array<Game>}>())
+        
+export const addToCreatedGameList = createAction(actionsConst.ADD_TO_CREATED_GAME_LIST,
+                                                        props<{game: Game}>())
+       
+export const removeFromCreatedGameList = createAction(actionsConst.REMOVE_FROM_CREATED_GAME_LIST,
+                                                             props<{gameId: Number}>())

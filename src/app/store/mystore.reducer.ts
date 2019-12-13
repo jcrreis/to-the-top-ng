@@ -13,6 +13,7 @@ export interface iGameInfo {
   user: User;
   selectedGame: Game;
   upvotedGameList: Array<Game>;
+  createdGameList: Array<Game>;
 }
 
 export const initialState: iGameInfo = {
@@ -28,6 +29,7 @@ export const initialState: iGameInfo = {
         upvotes: 0
       },
       upvotedGameList: [],
+      createdGameList: [],
 }
 
 
@@ -55,6 +57,14 @@ const _mystoreReducer = createReducer(
 
   on(StoreActions.removeFromUpvotedGameList, (state,{gameId})=> ({...state,
   upvotedGameList: [...state.upvotedGameList.filter(function (el){return el.id != gameId;})]})), 
+
+  on(StoreActions.updateCreatedGameList, (state,{createdGameList})=> ({...state,createdGameList:createdGameList})),
+
+  on(StoreActions.addToCreatedGameList, (state,{game})=> ({...state,createdGameList: [...state.createdGameList,game]})),
+
+  on(StoreActions.removeFromCreatedGameList, (state,{gameId})=> ({...state,
+    createdGameList: [...state.createdGameList.filter(function (el){return el.id != gameId;})]})), 
+
 )
 
 export const reducers: ActionReducerMap<iState> = {

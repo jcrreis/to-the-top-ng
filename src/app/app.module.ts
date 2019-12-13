@@ -21,9 +21,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs'; 
 import { HeaderComponent } from './header/header.component';
 import { UpvoteBtnComponent } from './upvote-btn/upvote-btn.component';
 import { UserAreaComponent } from './user-area/user-area.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
 
 
 
@@ -36,7 +38,8 @@ import { UserAreaComponent } from './user-area/user-area.component';
     GamePageComponent,
     HeaderComponent,
     UpvoteBtnComponent,
-    UserAreaComponent
+    UserAreaComponent,
+    MainpageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { UserAreaComponent } from './user-area/user-area.component';
     MatIconModule,
     MatFormFieldModule,    
     MatInputModule,
+    MatTabsModule
   ],
   providers: [
   

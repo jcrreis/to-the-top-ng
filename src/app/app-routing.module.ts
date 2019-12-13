@@ -4,6 +4,8 @@ import { LoginformComponent } from './loginform/loginform.component';
 import { SignupformComponent } from './signupform/signupform.component';
 import { GameslistComponent } from './gameslist/gameslist.component';
 import { GamePageComponent } from './game-page/game-page.component';
+import { UserAreaComponent } from './user-area/user-area.component';
+import { MainpageComponent } from './mainpage/mainpage.component';
 
 
 const routes: Routes = [
@@ -11,7 +13,8 @@ const routes: Routes = [
   { path: 'register', component: SignupformComponent },
   { path: 'games/:id', component: GamePageComponent},
   { path: 'signup', component: SignupformComponent },
-  { path: '', component: GameslistComponent },
+  {path: 'user',component: UserAreaComponent},
+  { path: '', component: MainpageComponent },
 
 ];
 

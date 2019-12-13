@@ -10,3 +10,4 @@ export const getUser = createSelector(getInfo,(state: iGameInfo): User => state.
 export const getGameList = createSelector(getInfo, (state: iGameInfo):Array<Game> => state.gameList)
 export const getSelectedGame = createSelector(getInfo, (state: iGameInfo): Game => state.selectedGame)
 export const getUpvotedGames = createSelector(getInfo, (state: iGameInfo): Array<Game> => state.upvotedGameList)
+export const getCreatedGames = createSelector(getInfo,(state: iGameInfo): Array<Game> => state.createdGameList)

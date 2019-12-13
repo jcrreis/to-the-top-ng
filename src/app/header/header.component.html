@@ -4,6 +4,6 @@
   <button mat-raised-button color="primary" (click)="logoutUser()">Logout</button>
   <button mat-raised-button color="primary" (click)="goToPage('signup')">Register</button>
   <div class="right-elements">
-    <h1 *ngIf="user | async" (click)="goToPage('')">{{(user | async).name}}</h1>
+    <h1 *ngIf="user | async" (click)="goToPage('/user')">{{(user | async).name}}</h1>
   </div>
 </mat-toolbar>
