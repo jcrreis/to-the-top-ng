@@ -28,16 +28,16 @@ export class GameslistComponent implements OnInit {
 
 
   ngOnInit() {
-    if (this.gamesType = "Upvoted"){
+    if (this.gamesType === "Upvoted"){
       this.games = this.store.select(getUpvotedGames)
     }
-    else if (this.gamesType = "Created"){
+    else if (this.gamesType === "Created"){
       this.games = this.store.select(getCreatedGames)
     }
     else{
       this.games = this.store.select(getGameList)
     }
-    debugger
+    
     this.getGames()
     this.game = {
       name: "",
