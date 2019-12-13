@@ -1,10 +1,11 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { GamesService } from '../games.service'
-import { Game } from '../game'
+import { Game,GameMinusId } from '../game'
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
 import { getGameList } from '../store/selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gameslist',
@@ -14,18 +15,17 @@ import { getGameList } from '../store/selectors';
 export class GameslistComponent implements OnInit {
 
   @Input() 
-  game: Game 
+  game: GameMinusId 
 
 
   games: Observable<Array<Game>>;
 
-  constructor(private gamesService : GamesService, private store : Store<iState>) {   }
+  constructor(private gamesService : GamesService, private store : Store<iState>,private router:Router) {   }
 
   ngOnInit() {
     this.games = this.store.select(getGameList)
     this.getGames()
     this.game = {
-      id: null,
       name: "",
       price: null,
       description: "",
@@ -35,6 +35,9 @@ export class GameslistComponent implements OnInit {
     }
   }
 
+  routeToGamePage(id){
+    this.router.navigate(['/games/'+id])
+  }
   getGames() {
    this.gamesService.allGames()
   }
