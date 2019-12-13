@@ -6,8 +6,8 @@ import { Observable, from } from 'rxjs';
 import { User } from './user';
 import { getUser } from './store/selectors';
 import { first } from 'rxjs/operators';
-import { UserResponse } from 'src/utils/interfaces';
-import { addUserToStore } from './store/mystore.actions';
+import { UserResponse, GameArrayResponse } from 'src/utils/interfaces';
+import { addUserToStore, updateUpvotedGameList } from './store/mystore.actions';
 import axios from '../utils/axios';
 
 
@@ -18,13 +18,13 @@ import axios from '../utils/axios';
 })
 export class AppComponent{
 
-  private userUrl = 'http://localhost:8000/user/'
+  private baseUrl = 'http://localhost:8000/'
 
   constructor(private store : Store<iState>){
   }
 
   ngOnInit() {
-    from(axios.get(this.userUrl)).pipe(first(),)
+    from(axios.get(this.baseUrl + 'user/')).pipe(first(),)
         .subscribe((response:UserResponse)=>{
           const dataU = response.data
           const user: User = {
@@ -33,6 +33,10 @@ export class AppComponent{
             email: dataU['email']
           }
           this.store.dispatch(addUserToStore({user: user}))
+          from(axios.get(this.baseUrl + 'upvotes/users/' + user.id + '/games')).pipe(first(),)
+          .subscribe((upvotedGames:GameArrayResponse) => {
+            this.store.dispatch(updateUpvotedGameList({upvotedGameList: upvotedGames.data}))
+          })
       }, error => {
         
       })

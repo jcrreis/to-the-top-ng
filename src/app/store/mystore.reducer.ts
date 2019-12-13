@@ -12,6 +12,7 @@ export interface iGameInfo {
   gameList: Array<Game> ;
   user: User;
   selectedGame: Game;
+  upvotedGameList: Array<Game>;
 }
 
 export const initialState: iGameInfo = {
@@ -26,16 +27,34 @@ export const initialState: iGameInfo = {
         trailerUrl: "",
         upvotes: 0
       },
+      upvotedGameList: [],
 }
 
 
 const _mystoreReducer = createReducer(
   initialState,
   on(StoreActions.updateGameList , (state, {gameList}) => ({...state, gameList: gameList})),
+
   on(StoreActions.addToGameList, (state,{game}) => ({...state , gameList: [...state.gameList,game]})),
+
+  on(StoreActions.removeFromGameList, (state,{gameId})=> ({...state,
+     gameList: [...state.gameList.filter(function (el){return el.id != gameId;})]})),
+
   on(StoreActions.addUserToStore, (state,{user}) => ({...state , user: user})),
+
   on(StoreActions.removeUserFromStore, (state) => ({...state , user: null})),
-  on(StoreActions.updateSelectedGame,(state,{game})=> ({...state,selectedGame:game}))
+
+  on(StoreActions.updateSelectedGame,(state,{game})=> ({...state,selectedGame:game})),
+
+  on(StoreActions.updateGameInGameList,(state,{game})=> ({...state,
+    gameList: [...state.gameList.filter(function (el){return el.id != game.id;}),game]})),
+
+  on(StoreActions.updateUpvotedGameList, (state,{upvotedGameList})=> ({...state,upvotedGameList: upvotedGameList})), 
+
+  on(StoreActions.addToUpvotedGameList, (state,{game})=> ({...state,upvotedGameList: [...state.upvotedGameList,game]})),
+
+  on(StoreActions.removeFromUpvotedGameList, (state,{gameId})=> ({...state,
+  upvotedGameList: [...state.upvotedGameList.filter(function (el){return el.id != gameId;})]})), 
 )
 
 export const reducers: ActionReducerMap<iState> = {

@@ -5,7 +5,7 @@ import axios  from '../utils/axios'
 import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
-import { updateGameList,addToGameList, updateSelectedGame } from './store/mystore.actions';
+import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList } from './store/mystore.actions';
 
 
 
@@ -16,6 +16,7 @@ import { updateGameList,addToGameList, updateSelectedGame } from './store/mystor
 export class GamesService {
 
   private gamesUrl = 'http://localhost:8000/games/'
+  private upvoteUrl = 'http://localhost:8000/upvotes/games/'
 
   constructor(private store : Store<iState>) { }
 
@@ -41,6 +42,27 @@ export class GamesService {
       this.store.dispatch(updateSelectedGame({game: response.data}))
     }).catch(error => {
 
+    })
+  }
+
+  upvoteGame(id: Number){
+    const data = {
+      game: id
+    }
+    axios.post(this.upvoteUrl + id, data).then(response => {
+      this.store.dispatch(updateSelectedGame({game: response.data}))
+      this.store.dispatch(updateGameInGameList({game:response.data}))
+      this.store.dispatch(addToUpvotedGameList({game:response.data}))
+    })
+  }
+  delUpvoteGame(id: Number){
+    const data = {
+      game: id
+    }
+    axios.delete(this.upvoteUrl + id, data).then(response => {
+      this.store.dispatch(updateSelectedGame({game: response.data}))
+      this.store.dispatch(updateGameInGameList({game:response.data}))
+      this.store.dispatch(removeFromUpvotedGameList({gameId:response.data.id}))
     })
   }
 }

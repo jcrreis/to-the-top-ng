@@ -9,3 +9,7 @@ export interface GameResponse {
 export interface UserResponse {
   data: User
 }
+
+export interface GameArrayResponse{
+  data: Array<Game>
+}
