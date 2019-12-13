@@ -17,7 +17,15 @@ export interface iGameInfo {
 export const initialState: iGameInfo = {
       gameList: [],
       user: null,
-      selectedGame: null,
+      selectedGame: {
+        id: 0,
+        name: "",
+        price: 0,
+        description: "",
+        storeLink: "",
+        trailerUrl: "",
+        upvotes: 0
+      },
 }
 
 

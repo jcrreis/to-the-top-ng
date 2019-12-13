@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SubscribableOrPromise } from 'rxjs';
+import { SubscribableOrPromise, Observable } from 'rxjs';
 import { OnDestroy } from "@angular/core";
 import { Subscription } from 'rxjs';
 import { Game } from '../game';
 import { GamesService } from '../games.service';
 import {GameResponse} from '../../utils/interfaces'
+import { getSelectedGame } from '../store/selectors';
+import { Store } from '@ngrx/store';
+import { iState } from '../store/mystore.reducer';
+
 
 @Component({
   selector: 'app-game-page',
@@ -19,33 +23,23 @@ export class GamePageComponent implements OnInit {
 
   game_id: Number;
   private subscription: Subscription;
-  private subscription2: Subscription;
-  game: Game;
+  game: Observable<Game>;
 
 
-  constructor(private route: ActivatedRoute,private gamesService : GamesService) { }
+  constructor(private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
-    this.game = {
-      id: 0,
-      name: "",
-      price: 0,
-      description: "",
-      storeLink: "",
-      trailerUrl: "",
-      upvotes: 0
-    }
-   this.subscription = this.route.params.subscribe(event =>{
+
+  this.game = this.store.select(getSelectedGame)   
+  this.subscription = this.route.params.subscribe(event =>{
       this.game_id = event.id
+      this.gamesService.getGamebyId(this.game_id)
     });
-    this.subscription2 = this.gamesService.getGamebyId(this.game_id).subscribe((response:GameResponse) => {
-      this.game = response.data
-    })
+    
   }
 
   ngOnDestroy(){
     this.subscription.unsubscribe();
-    this.subscription2.unsubscribe();
   }
 
 }

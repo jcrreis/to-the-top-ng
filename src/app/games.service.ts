@@ -5,7 +5,7 @@ import axios  from '../utils/axios'
 import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
-import { updateGameList,addToGameList } from './store/mystore.actions';
+import { updateGameList,addToGameList, updateSelectedGame } from './store/mystore.actions';
 
 
 
@@ -37,7 +37,10 @@ export class GamesService {
     })
   }
   getGamebyId(id : Number){
-    const observable = from(axios.get<Game>(this.gamesUrl + id))
-    return observable
+    axios.get<Game>(this.gamesUrl + id).then(response => {
+      this.store.dispatch(updateSelectedGame({game: response.data}))
+    }).catch(error => {
+
+    })
   }
 }
