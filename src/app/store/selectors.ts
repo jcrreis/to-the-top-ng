@@ -8,3 +8,4 @@ export const getInfo = createFeatureSelector<iGameInfo>('gameInfo');
 
 export const getUser = createSelector(getInfo,(state: iGameInfo): User => state.user)
 export const getGameList = createSelector(getInfo, (state: iGameInfo):Array<Game> => state.gameList)
+export const getSelectedGame = createSelector(getInfo, (state: iGameInfo): Game => state.selectedGame)

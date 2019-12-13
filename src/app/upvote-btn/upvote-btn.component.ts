@@ -12,4 +12,8 @@ export class UpvoteBtnComponent implements OnInit {
   ngOnInit() {
   }
 
+  upvoteGame(){
+
+  }
+
 }

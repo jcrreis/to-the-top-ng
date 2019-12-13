@@ -11,11 +11,13 @@ export interface iState {
 export interface iGameInfo {
   gameList: Array<Game> ;
   user: User;
+  selectedGame: Game;
 }
 
 export const initialState: iGameInfo = {
       gameList: [],
       user: null,
+      selectedGame: null,
 }
 
 
@@ -24,7 +26,8 @@ const _mystoreReducer = createReducer(
   on(StoreActions.updateGameList , (state, {gameList}) => ({...state, gameList: gameList})),
   on(StoreActions.addToGameList, (state,{game}) => ({...state , gameList: [...state.gameList,game]})),
   on(StoreActions.addUserToStore, (state,{user}) => ({...state , user: user})),
-  on(StoreActions.removeUserFromStore, (state) => ({...state , user: null}))
+  on(StoreActions.removeUserFromStore, (state) => ({...state , user: null})),
+  on(StoreActions.updateSelectedGame,(state,{game})=> ({...state,selectedGame:game}))
 )
 
 export const reducers: ActionReducerMap<iState> = {

@@ -11,3 +11,6 @@ export const addUserToStore = createAction(actionsConst.LOGIN,
                                             props<{ user: User } >());
 
 export const removeUserFromStore = createAction(actionsConst.LOGOUT);
+
+export const updateSelectedGame =  createAction(actionsConst.UPDATE_SELECTED_GAME, 
+                                                props<{game: Game}>())
