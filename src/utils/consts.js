@@ -14,4 +14,6 @@ export const REMOVE_FROM_UPVOTED_GAME_LIST = "removeFromUpvotedGameList"
 export const UPDATE_CREATED_GAME_LIST = "createdGameList"
 export const ADD_TO_CREATED_GAME_LIST = "addToCreatedGameList"
 export const REMOVE_FROM_CREATED_GAME_LIST = "removeFromCreatedGameList"
+export const ADD_UPVOTE_TO_CREATED_GAME = "addUpvoteToCreatedGame"
+export const REMOVE_UPVOTE_FROM_CREATED_GAME = "removeUpvoteFromCreateGame"
 
