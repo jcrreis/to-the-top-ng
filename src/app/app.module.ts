@@ -22,6 +22,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
+import { UpvoteBtnComponent } from './upvote-btn/upvote-btn.component';
 
 
 
@@ -32,7 +33,8 @@ import { HeaderComponent } from './header/header.component';
     SignupformComponent,
     GameslistComponent,
     GamePageComponent,
-    HeaderComponent
+    HeaderComponent,
+    UpvoteBtnComponent
   ],
   imports: [
     BrowserModule,
