@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SignupService } from '../signup.service'
 import { first } from 'rxjs/operators';
-import { UserResponseWithPassword } from 'src/utils/interfaces';
 import { Router } from '@angular/router';
 
 
