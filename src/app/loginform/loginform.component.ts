@@ -4,8 +4,12 @@ import { Store } from '@ngrx/store'
 import { iState, iGameInfo } from '../store/mystore.reducer'
 import { User } from '../user'
 import { getUser } from '../store/selectors'
-import { Observable } from 'rxjs';
-
+import { Observable, Subscription, from } from 'rxjs';
+import { Router } from '@angular/router';
+import { UserResponse } from 'src/utils/interfaces';
+import { addUserToStore } from '../store/mystore.actions';
+import { first } from 'rxjs/operators';
+import axios from '../../utils/axios';
 
 
 @Component({
@@ -24,9 +28,11 @@ export class LoginformComponent implements OnInit {
   password: string = ""
 
   user: Observable<User>;
+  private subscription: Subscription;
+  private subscription2: Subscription;
+  private userUrl = 'http://localhost:8000/user/'
 
-
-  constructor(private loginService : LoginService, private store : Store<iState>) { }
+  constructor(private loginService : LoginService, private store : Store<iState>,private router:Router) { }
 
 
   ngOnInit() {
@@ -48,7 +54,20 @@ export class LoginformComponent implements OnInit {
   login($event): void {
     $event.preventDefault()
     this.loginService.login(this.username, this.password)
-    console.log(this.user)
+    .pipe(first(),).subscribe((response) =>{
+       //TODO: Add error validation to login
+       from(axios.get(this.userUrl)).pipe(first(),)
+        .subscribe((response:UserResponse)=>{
+          const dataU = response.data
+          const user: User = {
+            id: dataU['pk'],
+            name: dataU['username'],
+            email: dataU['email']
+          }
+          this.store.dispatch(addUserToStore({user: user}))
+          this.router.navigate(['/'])
+      })
+    })
   }
 
 }

@@ -5,7 +5,7 @@ import { OnDestroy } from "@angular/core";
 import { Subscription } from 'rxjs';
 import { Game } from '../game';
 import { GamesService } from '../games.service';
-import {Response} from '../../utils/interfaces'
+import {GameResponse} from '../../utils/interfaces'
 
 @Component({
   selector: 'app-game-page',
@@ -38,7 +38,7 @@ export class GamePageComponent implements OnInit {
    this.subscription = this.route.params.subscribe(event =>{
       this.game_id = event.id
     });
-    this.subscription2 = this.gamesService.getGamebyId(this.game_id).subscribe((response:Response) => {
+    this.subscription2 = this.gamesService.getGamebyId(this.game_id).subscribe((response:GameResponse) => {
       this.game = response.data
     })
   }
