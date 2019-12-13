@@ -1,9 +1,18 @@
-<form>
-Username: <input type="text" name="username" value="" (change)="handleUsernameChange($event)"><br>
-Password: <input type="text" name="password" value="" (change)="handlePasswordChange($event)"><br>
-<input type="submit" value="Login" (click)="login($event)">
-</form>
+
+<mat-card class="logincard">
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Enter your username" [type]="text" (change)="handleUsernameChange($event)" value="">
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'hide'" (change)="handlePasswordChange($event)" value="">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="login($event)">Login</button>
+</mat-card>
 
 
-<h1>UserLoggedIn: {{(user | async).name}} </h1>
 

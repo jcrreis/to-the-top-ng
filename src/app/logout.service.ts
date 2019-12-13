@@ -9,19 +9,14 @@ import { removeUserFromStore } from './store/mystore.actions';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LogoutService {
 
   private logoutUrl = 'http://localhost:8000/logout/'
 
   constructor(private store : Store<iState>) { }
 
-  login (username: String,password: String){
-    
-    const data = {
-      username: username,
-      password: password,
-    }
-    axios.post(this.logoutUrl, data).then(() => {
+  logout (){
+    axios.post(this.logoutUrl).then(() => {
        this.store.dispatch(removeUserFromStore())
     }).catch((error) => {
       console.log(error)

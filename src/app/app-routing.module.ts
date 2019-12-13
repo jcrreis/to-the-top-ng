@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginformComponent },
   { path: 'register', component: SignupformComponent },
   { path: 'games/:id', component: GamePageComponent},
+  { path: 'signup', component: SignupformComponent },
   { path: '', component: GameslistComponent },
 
 ];
