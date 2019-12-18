@@ -40,8 +40,8 @@ export const addToCreatedGameList = createAction(actionsConst.ADD_TO_CREATED_GAM
 export const removeFromCreatedGameList = createAction(actionsConst.REMOVE_FROM_CREATED_GAME_LIST,
                                                              props<{gameId: Number}>())
 
-export const addUpvoteToCreatedGame = createAction(actionsConst.ADD_UPVOTE_TO_CREATED_GAME ,
-                                                    props<{gameId: Number}>())
-                                                  
-export const removeUpvoteFromCreatedGame = createAction(actionsConst.REMOVE_UPVOTE_FROM_CREATED_GAME,
-                                                        props<{gameId: Number}>())
+export const upvoteGame = createAction(actionsConst.UPVOTE_GAME ,
+                                        props<{game: Game}>())
+
+export const downvoteGame = createAction(actionsConst.DOWNVOTE_GAME,
+                                         props<{game:Game}>())

@@ -69,9 +69,19 @@ const _mystoreReducer = createReducer(
   on(StoreActions.removeFromCreatedGameList, (state,{gameId})=> ({...state,
     createdGameList: [...state.createdGameList.filter(function (el){return el.id != gameId;})]})), 
 
-  on(StoreActions.addUpvoteToCreatedGame,(state,{gameId}) =>({...state,
-    
-  }))  
+  on(StoreActions.upvoteGame, (state,{game})=> ({...state,
+    gameList: state.gameList.map((el) => (el.id === game.id ? game : el)),
+    upvotedGameList: state.upvotedGameList.map((el) => (el.id === game.id ? game : el)),
+    createdGameList: state.createdGameList.map((el) => (el.id === game.id ? game : el)),
+    selectedGame: game
+  })),
+
+  on(StoreActions.downvoteGame , (state,{game}) => ({...state,
+    gameList: state.gameList.map((el) => (el.id === game.id ? game : el)),
+    upvotedGameList: state.upvotedGameList.map((el) => (el.id === game.id ? game : el)),
+    createdGameList: state.createdGameList.map((el) => (el.id === game.id ? game : el)),
+    selectedGame: game
+  }))
 
 )
 
