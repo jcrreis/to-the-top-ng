@@ -82,8 +82,8 @@ const _mystoreReducer = createReducer(
     gameList: state.gameList.map((el) => (el.id === game.id ? game : el)),
     upvotedGameList: state.upvotedGameList.map((el) => (el.id === game.id ? game : el)),
     createdGameList: state.createdGameList.map((el) => (el.id === game.id ? game : el)),
-    selectedGame: game
-  })),
+    selectedGame: game})),
+  
   
   on(StoreActions.removeGameFromStore,(state,{gameId}) => ({...state,
     createdGameList: [...state.createdGameList.filter(function (el){return el.id != gameId;})], 
