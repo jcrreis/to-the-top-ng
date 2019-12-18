@@ -26,6 +26,8 @@ import { HeaderComponent } from './header/header.component';
 import { UpvoteBtnComponent } from './upvote-btn/upvote-btn.component';
 import { UserAreaComponent } from './user-area/user-area.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import {MatSelectModule} from '@angular/material/select';
+import { OrderModule } from 'ngx-order-pipe';
 
 
 
@@ -58,7 +60,9 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     MatIconModule,
     MatFormFieldModule,    
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule,
+    OrderModule
   ],
   providers: [
   

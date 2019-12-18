@@ -5,7 +5,7 @@ import axios  from '../utils/axios'
 import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
-import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList, upvoteGame, downvoteGame } from './store/mystore.actions';
+import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList, upvoteGame, downvoteGame, orderByName, orderByUpvote } from './store/mystore.actions';
 
 
 
@@ -63,5 +63,5 @@ export class GamesService {
       this.store.dispatch(removeFromUpvotedGameList({gameId:response.data.id}))
     })
   }
-  
+
 }

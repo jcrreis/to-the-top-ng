@@ -45,3 +45,4 @@ export const upvoteGame = createAction(actionsConst.UPVOTE_GAME ,
 
 export const downvoteGame = createAction(actionsConst.DOWNVOTE_GAME,
                                          props<{game:Game}>())
+

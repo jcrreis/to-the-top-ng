@@ -1,8 +1,16 @@
 <h2>Games</h2>
 
 <ul class="games">
+  <mat-form-field>
+    <mat-label>Order By</mat-label>
+    <mat-select (selectionChange)="orderComp()" [(ngModel)]="order">
+      <mat-option *ngFor="let order of orders" [value]="order">
+        {{order}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
   <mat-grid-list cols= 4 >
-      <mat-grid-tile *ngFor="let game of games | async">
+      <mat-grid-tile *ngFor="let game of games | async  | orderBy:order :reverse">
           <mat-card (click)="routeToGamePage(game.id)">
             <mat-card-header>
               <mat-card-title> {{game.name}} </mat-card-title>

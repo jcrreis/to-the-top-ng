@@ -2,6 +2,7 @@ import { createReducer,on, ActionReducerMap } from '@ngrx/store'
 import * as StoreActions from './mystore.actions'
 import { Game } from '../game'
 import { User } from '../user'
+import * as Comparators from '../../utils/comparators'
 
 
 export interface iState {
@@ -81,7 +82,7 @@ const _mystoreReducer = createReducer(
     upvotedGameList: state.upvotedGameList.map((el) => (el.id === game.id ? game : el)),
     createdGameList: state.createdGameList.map((el) => (el.id === game.id ? game : el)),
     selectedGame: game
-  }))
+  })),
 
 )
 

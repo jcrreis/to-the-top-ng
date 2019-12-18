@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import { User } from '../user';
 import { first } from 'rxjs/operators';
 import {axios} from '../../utils/axios'
+import * as Comparators from '../../utils/comparators'
+import { OrderPipe } from 'ngx-order-pipe';
 
 @Component({
   selector: 'app-gameslist',
@@ -24,7 +26,10 @@ export class GameslistComponent implements OnInit {
 
   games: Observable<Array<Game>>;
   userid: number
-  constructor(private gamesService : GamesService, private store : Store<iState>,private router:Router) {   }
+  orders: Array<String>
+  order: String
+  reverse: Boolean
+  constructor(private gamesService : GamesService, private store : Store<iState>,private router:Router,private orderPipe: OrderPipe) {   }
 
 
   ngOnInit() {
@@ -37,7 +42,8 @@ export class GameslistComponent implements OnInit {
     else{
       this.games = this.store.select(getGameList)
     }
-    
+    this.reverse = false
+    this.orders = ['name','upvotes']
     this.getGames()
     this.game = {
       name: "",
@@ -61,4 +67,17 @@ export class GameslistComponent implements OnInit {
     console.log(this.game)
   }
 
+  orderComp(){
+    switch(this.order){
+      case "name":
+        this.reverse = false
+        break;
+      case "upvotes":
+        this.reverse = true
+        break;
+      default: 
+        this.reverse = false
+        break;   
+    }
+  }
 }
