@@ -26,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
 import { UpvoteBtnComponent } from './upvote-btn/upvote-btn.component';
 import { UserAreaComponent } from './user-area/user-area.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { EditgameformComponent } from './editgameform/editgameform.component';
 
 
 
@@ -39,7 +40,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     HeaderComponent,
     UpvoteBtnComponent,
     UserAreaComponent,
-    MainpageComponent
+    MainpageComponent,
+    EditgameformComponent
   ],
   imports: [
     BrowserModule,

@@ -45,3 +45,9 @@ export const addUpvoteToCreatedGame = createAction(actionsConst.ADD_UPVOTE_TO_CR
                                                   
 export const removeUpvoteFromCreatedGame = createAction(actionsConst.REMOVE_UPVOTE_FROM_CREATED_GAME,
                                                         props<{gameId: Number}>())
+
+export const removeGameFromStore = createAction(actionsConst.REMOVE_GAME_FROM_STORE,
+                                                        props<{gameId: Number}>())
+                        
+export const updateGameFromStore = createAction(actionsConst.UPDATE_GAME_FROM_STORE,
+                                                        props<{game: Game}>())

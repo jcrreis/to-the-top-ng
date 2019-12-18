@@ -6,6 +6,7 @@ export class Game{
   storeLink: string;
   trailerUrl: string;
   upvotes: number;
+  user: number;
 }
 
 export class GameMinusId{

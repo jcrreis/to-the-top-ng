@@ -13,5 +13,9 @@
   <mat-card-actions>
       <app-upvote-btn gameId="{{(game | async).id}}">
         </app-upvote-btn>
+    <div class="userActions" *ngIf="editableGame" >
+      <button mat-raised-button color="warn" (click)="deleteGame()">Delete</button>
+      <button mat-raised-button color="warn" (click)="navigateToEditForm()">Edit</button>
+    </div>
   </mat-card-actions>
 </mat-card>
