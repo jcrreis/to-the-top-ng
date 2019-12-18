@@ -5,7 +5,7 @@ import axios  from '../utils/axios'
 import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
-import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList, upvoteGame, downvoteGame, orderByName, orderByUpvote } from './store/mystore.actions';
+import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList,removeGameFromStore, updateGameFromStore } from './store/mystore.actions';
 
 
 
@@ -54,6 +54,7 @@ export class GamesService {
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     })
   }
+
   delUpvoteGame(id: Number){
     const data = {
       game: id
@@ -64,4 +65,17 @@ export class GamesService {
     })
   }
 
+  deleteGame(id: Number){
+    axios.delete('http://localhost:8000/games/'+id).then(() => {
+      this.store.dispatch(removeGameFromStore({gameId: id}))
+    })
+  }
+
+  updateGame(game: Game){
+    axios.put('http://localhost:8000/games/'+game.id, game).then((response) => {
+      const newGame: Game = response.data
+      this.store.dispatch(updateGameFromStore({game: newGame}))
+    });
+  }
+  
 }

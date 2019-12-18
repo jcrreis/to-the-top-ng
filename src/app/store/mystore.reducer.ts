@@ -27,7 +27,8 @@ export const initialState: iGameInfo = {
         description: "",
         storeLink: "",
         trailerUrl: "",
-        upvotes: 0
+        upvotes: 0,
+        user: -1,
       },
       upvotedGameList: [],
       createdGameList: [],
@@ -81,9 +82,17 @@ const _mystoreReducer = createReducer(
     gameList: state.gameList.map((el) => (el.id === game.id ? game : el)),
     upvotedGameList: state.upvotedGameList.map((el) => (el.id === game.id ? game : el)),
     createdGameList: state.createdGameList.map((el) => (el.id === game.id ? game : el)),
-    selectedGame: game
-  })),
-
+    selectedGame: game})),
+  
+  
+  on(StoreActions.removeGameFromStore,(state,{gameId}) => ({...state,
+    createdGameList: [...state.createdGameList.filter(function (el){return el.id != gameId;})], 
+    upvotedGameList: [...state.upvotedGameList.filter(function (el){return el.id != gameId;})],
+    gameList: [...state.gameList.filter(function (el){return el.id != gameId;})]})),
+  
+  on(StoreActions.updateGameFromStore,(state,{game}) => ({...state,
+    gameList: state.gameList.map((gameI)=> gameI.id === game.id ? {...gameI,...game} : gameI )
+  }))
 )
 
 export const reducers: ActionReducerMap<iState> = {

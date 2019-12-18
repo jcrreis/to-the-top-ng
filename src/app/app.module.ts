@@ -28,6 +28,7 @@ import { UserAreaComponent } from './user-area/user-area.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { OrderModule } from 'ngx-order-pipe';
+import { EditgameformComponent } from './editgameform/editgameform.component';
 
 
 
@@ -41,7 +42,8 @@ import { OrderModule } from 'ngx-order-pipe';
     HeaderComponent,
     UpvoteBtnComponent,
     UserAreaComponent,
-    MainpageComponent
+    MainpageComponent,
+    EditgameformComponent
   ],
   imports: [
     BrowserModule,

@@ -6,14 +6,15 @@ import { GameslistComponent } from './gameslist/gameslist.component';
 import { GamePageComponent } from './game-page/game-page.component';
 import { UserAreaComponent } from './user-area/user-area.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
-
+import {EditgameformComponent} from './editgameform/editgameform.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginformComponent },
   { path: 'register', component: SignupformComponent },
   { path: 'games/:id', component: GamePageComponent},
   { path: 'signup', component: SignupformComponent },
-  {path: 'user',component: UserAreaComponent},
+  { path: 'user',component: UserAreaComponent },
+  { path: 'edit/:id',component: EditgameformComponent },
   { path: '', component: MainpageComponent },
 
 ];
