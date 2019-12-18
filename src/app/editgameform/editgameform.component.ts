@@ -30,7 +30,6 @@ export class EditgameformComponent implements OnInit {
   ngOnInit() {
 
    this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
-        debugger
         this.game = game
     })
     this.subscription = this.route.params.subscribe(event =>{
