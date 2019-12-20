@@ -1,11 +1,11 @@
 <div *ngIf="isUpvoted; then DelUpvoteBtn else UpvoteBtn"></div>
 <ng-template #UpvoteBtn>
 <button mat-icon-button (click)="upvoteGame($event)">
-    <mat-icon>favorite</mat-icon>
+    <mat-icon>favorite_outline</mat-icon>
 </button>
 </ng-template>
 <ng-template #DelUpvoteBtn>
 <button #DelUpvoteBtn mat-icon-button (click)="delUpvoteGame($event)">
-    <mat-icon>home</mat-icon>
+    <mat-icon>favorite</mat-icon>
 </button>
 </ng-template>

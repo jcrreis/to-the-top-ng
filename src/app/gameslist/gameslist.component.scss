@@ -2,3 +2,27 @@
   float: right;
   margin-right: 40px;
 }
+
+mat-card{
+  width:250px
+}
+
+mat-card-actions{
+  display:flex;
+  flex-direction: column;
+}
+
+.numUpvotes{
+  margin-left:14px;
+}
+
+mat-form-field{
+  text-transform: capitalize;
+
+}
+
+
+mat-option{
+  text-transform: capitalize;
+
+}

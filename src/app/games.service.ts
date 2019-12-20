@@ -56,13 +56,12 @@ export class GamesService {
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     })
   }
-//  /upvotes/games/<int:game_id>/<int:user_id>
 
   delUpvoteGame(id: Number){
     const data = {
       game: id
     }
-    axios.delete(this.upvoteUrl+'/'+ id + id).then(response => {
+    axios.delete(this.upvoteUrl+id).then(response => {
       this.store.dispatch(downvoteGame({game: response.data}))
       this.store.dispatch(removeFromUpvotedGameList({gameId:response.data.id}))
     })
