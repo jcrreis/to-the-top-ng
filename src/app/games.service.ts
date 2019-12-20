@@ -73,8 +73,8 @@ export class GamesService {
     })
   }
 
-  updateGame(game: Game){
-    axios.put('http://localhost:8000/games/'+game.id, game).then((response) => {
+  updateGame(game: FormData,game_id:Number){
+    axios.put('http://localhost:8000/games/'+game_id, game).then((response) => {
       const newGame: Game = response.data
       this.store.dispatch(updateGameFromStore({game: newGame}))
     });
