@@ -11,6 +11,7 @@ import { addUserToStore, updateUpvotedGameList, updateCreatedGameList } from './
 import axios from '../utils/axios';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

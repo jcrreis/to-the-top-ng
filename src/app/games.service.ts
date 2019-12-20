@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Game ,GameMinusId} from './game'
+import { Game ,GameMinusId, GameMinusIdWithImage} from './game'
 import { Observable, of } from 'rxjs';
 import axios  from '../utils/axios'
 import {from} from 'rxjs';
@@ -30,7 +30,7 @@ export class GamesService {
    
   }
 
-  addGame(game: GameMinusId){
+  addGame(game: FormData){
     axios.post<Game>(this.gamesUrl, game).then((response) => {
       this.store.dispatch(addToGameList({game: response.data}))
       this.store.dispatch(addToCreatedGameList({game: response.data}))
