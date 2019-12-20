@@ -9,6 +9,7 @@ export class Game{
   trailerUrl: string;
   upvotes: number;
   user: number;
+  image: File;
 }
 
 export class GameMinusId{
