@@ -33,6 +33,7 @@ export class EditgameformComponent implements OnInit {
 
    this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
         this.game = game
+        if(game.image != null)
         this.previewUrl = game.image
     })
     this.subscription = this.route.params.subscribe(event =>{
