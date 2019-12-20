@@ -1,10 +1,18 @@
 .logincard{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 500px;
+  margin: 30px auto;
+
+  button{
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  h1{
+    margin: 10px auto;
+  }
 }
 
-.container{
-  padding: 20px;
-  align-content: center;
-}
+
+

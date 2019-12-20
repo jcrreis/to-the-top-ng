@@ -1,0 +1,17 @@
+.registercard{
+  display: flex;
+  flex-direction: column;
+
+  h1{
+    margin: 5px auto;
+  }
+  
+  width: 500px;
+  margin: 30px auto;
+
+  button{
+    width: fit-content;
+    margin: 0 auto;
+  }
+  
+}
