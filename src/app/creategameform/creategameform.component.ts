@@ -12,6 +12,8 @@ export class CreategameformComponent implements OnInit {
 
   game: GameMinusIdWithImage 
   gameImage: File = null
+  previewUrl:any = null;
+  
   constructor(private gamesService: GamesService ) {}
 
   ngOnInit() {
@@ -27,6 +29,18 @@ export class CreategameformComponent implements OnInit {
   }
   onFileSelected(event){
     this.gameImage = <File>event.target.files[0]
+    this.preview()
+  }
+
+  preview(){
+    var mimeType = this.gameImage.type;
+    if(mimeType.match(/image\/*/) == null)
+      return;
+    var reader = new FileReader();
+    reader.readAsDataURL(this.gameImage);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
   }
 
   addGame(): void{

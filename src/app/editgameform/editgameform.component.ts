@@ -21,6 +21,7 @@ export class EditgameformComponent implements OnInit {
   game_id: Number;
   private subscription: Subscription;
   gameImage: File = null
+  previewUrl:any = null;
 
   constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
@@ -32,6 +33,8 @@ export class EditgameformComponent implements OnInit {
 
    this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
         this.game = game
+        if(game.image != null)
+        this.previewUrl = game.image
     })
     this.subscription = this.route.params.subscribe(event =>{
       this.game_id = event.id
@@ -44,6 +47,18 @@ export class EditgameformComponent implements OnInit {
   }
   onFileSelected(event){
     this.gameImage = <File>event.target.files[0]
+    this.preview()
+  }
+
+  preview(){
+    var mimeType = this.gameImage.type;
+    if(mimeType.match(/image\/*/) == null)
+      return;
+    var reader = new FileReader();
+    reader.readAsDataURL(this.gameImage);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
   }
 
   editGame(): void {

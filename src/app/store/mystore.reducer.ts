@@ -29,6 +29,7 @@ export const initialState: iGameInfo = {
         trailerUrl: "",
         upvotes: 0,
         user: -1,
+        image:null,
       },
       upvotedGameList: [],
       createdGameList: [],
