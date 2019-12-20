@@ -1,7 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { GamesService } from '../games.service'
 import { Game,GameMinusId } from '../game'
-import { Observable, from } from 'rxjs';
+import { Observable, from, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
 import { getGameList, getUpvotedGames, getUser, getCreatedGames } from '../store/selectors';
@@ -19,41 +19,45 @@ import { OrderPipe } from 'ngx-order-pipe';
 })
 export class GameslistComponent implements OnInit {
 
-  @Input() 
-  game: GameMinusId 
+  
 
   @Input()  gamesType: string
 
-  games: Observable<Array<Game>>;
+  searchText: string
+
+  games: Array<Game>;
   userid: number
   orders: Array<String>
   order: String
   reverse: Boolean
+  subscription: Subscription
+  filterText: string
   constructor(private gamesService : GamesService, private store : Store<iState>,private router:Router,private orderPipe: OrderPipe) {   }
 
 
   ngOnInit() {
     if (this.gamesType === "Upvoted"){
-      this.games = this.store.select(getUpvotedGames)
+      this.subscription = this.store.select(getUpvotedGames).subscribe(games => {
+        this.games = games
+      })
     }
     else if (this.gamesType === "Created"){
-      this.games = this.store.select(getCreatedGames)
+      this.subscription =  this.store.select(getCreatedGames).subscribe(games => {
+        this.games = games
+      })
     }
     else{
-      this.games = this.store.select(getGameList)
+      this.subscription = this.store.select(getGameList).subscribe(games => {
+        this.games = games
+      })
     }
     this.reverse = false
-    this.orders = ['name','upvotes']
+    this.orders = ['Alphabetical','Most Popular']
     this.getGames()
-    this.game = {
-      name: "",
-      price: null,
-      description: "",
-      storeLink: "",
-      trailerUrl: "",
-      upvotes: 0,
-    }
+    
   }
+
+  
 
   routeToGamePage(id){
     this.router.navigate(['/games/'+id])
@@ -62,22 +66,26 @@ export class GameslistComponent implements OnInit {
    this.gamesService.allGames()
   }
 
-  addGame(): void{
-    this.gamesService.addGame(this.game)
-    console.log(this.game)
-  }
 
   orderComp(){
     switch(this.order){
-      case "name":
+      case "Alphabetical":
         this.reverse = false
         break;
-      case "upvotes":
+      case "Most Popular":
         this.reverse = true
         break;
       default: 
         this.reverse = false
         break;   
     }
+  }
+
+  redirectToForm(){
+    this.router.navigate(['/create'])
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
   }
 }

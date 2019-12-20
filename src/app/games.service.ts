@@ -6,6 +6,7 @@ import {from} from 'rxjs';
 import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
 import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList,removeGameFromStore, updateGameFromStore, upvoteGame, downvoteGame } from './store/mystore.actions';
+import { Router } from '@angular/router';
 
 
 
@@ -18,7 +19,7 @@ export class GamesService {
   private gamesUrl = 'http://localhost:8000/games/'
   private upvoteUrl = 'http://localhost:8000/upvotes/games/'
 
-  constructor(private store : Store<iState>) { }
+  constructor(private store : Store<iState>, private router: Router) { }
 
   allGames (): void{
    axios.get<Game[]>(this.gamesUrl).then(response => {
@@ -33,9 +34,9 @@ export class GamesService {
     axios.post<Game>(this.gamesUrl, game).then((response) => {
       this.store.dispatch(addToGameList({game: response.data}))
       this.store.dispatch(addToCreatedGameList({game: response.data}))
-      return response.data
+      this.router.navigate(['/']);
     }).catch((error) => {
-      return error
+      
     })
   }
   getGamebyId(id : Number){
@@ -55,12 +56,13 @@ export class GamesService {
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     })
   }
+//  /upvotes/games/<int:game_id>/<int:user_id>
 
   delUpvoteGame(id: Number){
     const data = {
       game: id
     }
-    axios.delete(this.upvoteUrl + id, data).then(response => {
+    axios.delete(this.upvoteUrl+'/'+ id + id).then(response => {
       this.store.dispatch(downvoteGame({game: response.data}))
       this.store.dispatch(removeFromUpvotedGameList({gameId:response.data.id}))
     })

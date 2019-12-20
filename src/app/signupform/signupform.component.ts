@@ -31,7 +31,6 @@ export class SignupformComponent implements OnInit {
 
   }
   
-
   handleUsernameChange($event){
     $event.preventDefault()
     this.username = $event.target.value
