@@ -29,6 +29,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import {MatSelectModule} from '@angular/material/select';
 import { OrderModule } from 'ngx-order-pipe';
 import { EditgameformComponent } from './editgameform/editgameform.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CreategameformComponent } from './creategameform/creategameform.component';
 
 
 
@@ -43,7 +45,8 @@ import { EditgameformComponent } from './editgameform/editgameform.component';
     UpvoteBtnComponent,
     UserAreaComponent,
     MainpageComponent,
-    EditgameformComponent
+    EditgameformComponent,
+    CreategameformComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { EditgameformComponent } from './editgameform/editgameform.component';
     MatInputModule,
     MatTabsModule,
     MatSelectModule,
-    OrderModule
+    OrderModule,
+    Ng2SearchPipeModule,
   ],
   providers: [
   

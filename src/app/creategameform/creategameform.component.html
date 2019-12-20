@@ -1,0 +1,21 @@
+<mat-form-field appearance="outline">
+  <mat-label>Name</mat-label>
+  <input matInput required [type]="text" [(ngModel)]="game.name" value="game.name">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Price</mat-label>
+  <input matInput  required [type]="text" [(ngModel)]="game.price"  value="game.price">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Description</mat-label>
+  <input matInput  [(ngModel)]="game.description"  value="game.description">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Store link</mat-label>
+  <input matInput   [type]="text" [(ngModel)]="game.storeLink" value="game.storeLink">
+</mat-form-field>
+<mat-form-field appearance="outline">
+  <mat-label>Trailer url</mat-label>
+  <input matInput   [type]="text" [(ngModel)]="game.trailerUrl" value="game.trailerUrl"> 
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="addGame($event)">Create Game</button>

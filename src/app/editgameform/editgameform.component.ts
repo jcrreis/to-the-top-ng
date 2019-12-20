@@ -25,9 +25,9 @@ export class EditgameformComponent implements OnInit {
 
  
 
-
-
   ngOnInit() {
+
+  
 
    this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
         this.game = game

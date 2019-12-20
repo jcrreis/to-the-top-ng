@@ -7,6 +7,7 @@ import { GamePageComponent } from './game-page/game-page.component';
 import { UserAreaComponent } from './user-area/user-area.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import {EditgameformComponent} from './editgameform/editgameform.component'
+import {CreategameformComponent} from './creategameform/creategameform.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginformComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupformComponent },
   { path: 'user',component: UserAreaComponent },
   { path: 'edit/:id',component: EditgameformComponent },
+  { path: 'create',component: CreategameformComponent},
   { path: '', component: MainpageComponent },
 
 ];

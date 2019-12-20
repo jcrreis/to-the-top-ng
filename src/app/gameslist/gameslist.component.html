@@ -9,8 +9,14 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-raised-button color="primary" (click)="redirectToForm()" class="addbtn"><mat-icon>add</mat-icon>Add Game</button>
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" [(ngModel)]="filterText" placeholder="Search">
+    </mat-form-field>
+  </div>
   <mat-grid-list cols= 4 >
-      <mat-grid-tile *ngFor="let game of games | async  | orderBy:order :reverse">
+      <mat-grid-tile *ngFor="let game of games |  orderBy:order :reverse | filter : filterText">
           <mat-card (click)="routeToGamePage(game.id)">
             <mat-card-header>
               <mat-card-title> {{game.name}} </mat-card-title>
@@ -33,12 +39,5 @@
 </ul>
 
 
-<form>
-Name: <input type="text" name="name" value="" [(ngModel)]="game.name"><br>
-Price: <input type="text" name="price" value="" [(ngModel)]="game.price"><br>
-Description: <input type="text" name="description" value="" [(ngModel)]="game.description"><br>
-StoreLink: <input type="text" name="StoreLink" value="" [(ngModel)]="game.storeLink"><br>
-TrailerUrl: <input type="text" name="TrailerUrl" value="" [(ngModel)]="game.trailerUrl"><br>
-<input type="submit" value="Login" (click)="addGame($event)">
-</form>
+
 
