@@ -1,42 +1,45 @@
-<h2>Games</h2>
+<div class="container">
+  <h2>Games</h2>
 
-<ul class="games">
-  <mat-form-field>
-    <mat-label>Order By</mat-label>
-    <mat-select (selectionChange)="orderComp()" [(ngModel)]="order">
-      <mat-option *ngFor="let order of orders" [value]="order">
-        {{order}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="redirectToForm()" class="addbtn"><mat-icon>add</mat-icon>Add Game</button>
-  <div fxLayout fxLayoutAlign="center center">
-    <mat-form-field fxFlex="40%">
-      <input matInput type="text" [(ngModel)]="filterText" placeholder="Search">
-    </mat-form-field>
+  <div class="games">
+    <button mat-raised-button color="primary" (click)="redirectToForm()" class="addbtn"><mat-icon>add</mat-icon>Add Game</button>
+    <div class="actions">
+      <mat-form-field>
+        <mat-label>Order By</mat-label>
+        <mat-select (selectionChange)="orderComp()" [(ngModel)]="order">
+          <mat-option *ngFor="let order of orders" [value]="order">
+            {{order}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+          <input matInput type="text" [(ngModel)]="filterText" placeholder="Search">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-grid-list cols= 3 >
+        <mat-grid-tile *ngFor="let game of games |  orderBy:order :reverse | filter : filterText">
+            <mat-card (click)="routeToGamePage(game.id)">
+              <mat-card-header>
+                <mat-card-title> {{game.name}} </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p>
+                {{game.description}}
+                </p>
+              </mat-card-content>
+              <mat-card-actions>
+                <app-upvote-btn gameId="{{game.id}}">
+                </app-upvote-btn>
+                <div class="numUpvotes">{{game.upvotes}}</div>
+              </mat-card-actions>
+            </mat-card> 
+        </mat-grid-tile>
+    </mat-grid-list>
   </div>
-  <mat-grid-list cols= 4 >
-      <mat-grid-tile *ngFor="let game of games |  orderBy:order :reverse | filter : filterText">
-          <mat-card (click)="routeToGamePage(game.id)">
-            <mat-card-header>
-              <mat-card-title> {{game.name}} </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-               {{game.description}}
-              </p>
-            </mat-card-content>
-            <mat-card-footer>
-              Upvotes: {{game.upvotes}}
-            </mat-card-footer>
-            <mat-card-actions>
-              <app-upvote-btn gameId="{{game.id}}">
-              </app-upvote-btn>
-            </mat-card-actions>
-          </mat-card> 
-      </mat-grid-tile>
-  </mat-grid-list>
-</ul>
+</div>
 
 
 

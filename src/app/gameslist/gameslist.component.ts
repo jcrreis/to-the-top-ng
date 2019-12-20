@@ -52,7 +52,7 @@ export class GameslistComponent implements OnInit {
       })
     }
     this.reverse = false
-    this.orders = ['Alphabetical','Most Popular']
+    this.orders = ['name','upvotes']
     this.getGames()
     
   }
@@ -69,10 +69,11 @@ export class GameslistComponent implements OnInit {
 
   orderComp(){
     switch(this.order){
-      case "Alphabetical":
+      case "name":
+
         this.reverse = false
         break;
-      case "Most Popular":
+      case "upvotes":
         this.reverse = true
         break;
       default: 
