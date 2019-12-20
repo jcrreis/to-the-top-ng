@@ -32,6 +32,7 @@ export class GamesService {
   addGame(game: GameMinusId){
     axios.post<Game>(this.gamesUrl, game).then((response) => {
       this.store.dispatch(addToGameList({game: response.data}))
+      this.store.dispatch(addToCreatedGameList({game: response.data}))
       return response.data
     }).catch((error) => {
       return error
@@ -45,11 +46,11 @@ export class GamesService {
     })
   }
 
-  upvoteGame(id: Number){
+  upvoteGame(game_id: Number){
     const data = {
-      game: id
+      game: game_id
     }
-    axios.post(this.upvoteUrl + id, data).then(response => {
+    axios.post(this.upvoteUrl + game_id ).then(response => {
       this.store.dispatch(upvoteGame({game: response.data}))
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     })

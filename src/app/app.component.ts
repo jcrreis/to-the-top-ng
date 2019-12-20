@@ -33,11 +33,11 @@ export class AppComponent{
             email: dataU['email']
           }
           this.store.dispatch(addUserToStore({user: user}))
-          from(axios.get(this.baseUrl + 'upvotes/users/' + user.id + '/games')).pipe(first(),)
+          from(axios.get(this.baseUrl + 'upvotes/users/' + user.id +'/games')).pipe(first(),)
           .subscribe((upvotedGames:GameArrayResponse) => {
             this.store.dispatch(updateUpvotedGameList({upvotedGameList: upvotedGames.data}))
           })
-          from(axios.get(this.baseUrl + 'users/' + user.id + '/games')).pipe(first(),)
+          from(axios.get(this.baseUrl +'games/user/'+user.id)).pipe(first(),)
           .subscribe((createdGames:GameArrayResponse) => {
             this.store.dispatch(updateCreatedGameList({createdGameList: createdGames.data}))
           })
