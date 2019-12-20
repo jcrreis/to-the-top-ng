@@ -31,6 +31,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { EditgameformComponent } from './editgameform/editgameform.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CreategameformComponent } from './creategameform/creategameform.component';
+<<<<<<< HEAD
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { MaterialFileInputModule, FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { ReactiveFormsModule } from '@angular/forms'; 
@@ -38,6 +39,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export const config: FileInputConfig = {
   sizeUnit: 'Octet'
 };
+=======
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
+>>>>>>> Create new component for change password and add user info to user area
 
 
 
@@ -54,6 +59,8 @@ export const config: FileInputConfig = {
     MainpageComponent,
     EditgameformComponent,
     CreategameformComponent,
+    UserinfoComponent,
+    ChangePasswordFormComponent,
   ],
   imports: [
     BrowserModule,
