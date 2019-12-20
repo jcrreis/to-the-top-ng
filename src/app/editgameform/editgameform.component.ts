@@ -20,6 +20,7 @@ export class EditgameformComponent implements OnInit {
   gameSub: Subscription
   game_id: Number;
   private subscription: Subscription;
+  gameImage: File = null
 
   constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
@@ -41,9 +42,20 @@ export class EditgameformComponent implements OnInit {
   ngOnDestroy() {
     this.gameSub.unsubscribe()
   }
+  onFileSelected(event){
+    this.gameImage = <File>event.target.files[0]
+  }
 
   editGame(): void {
-    this.gamesService.updateGame(this.game)
+    const fd =  new FormData()
+    fd.append('name',this.game.name)
+    fd.append('price',this.game.price.toString())
+    fd.append('description',this.game.description)
+    fd.append('storeLink',this.game.storeLink)
+    fd.append('trailerUrl',this.game.trailerUrl)
+    fd.append('image', this.gameImage , this.gameImage.name);
+    
+    this.gamesService.updateGame(fd,this.game_id)
     this.router.navigate(['/'])
   }
 }

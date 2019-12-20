@@ -1,4 +1,6 @@
-<mat-form-field appearance="outline" class="card">
+<mat-card class="card">
+    <h1>Create Game</h1>
+<mat-form-field appearance="outline">
   <mat-label>Name</mat-label>
   <input matInput required [type]="text" [(ngModel)]="game.name" value="game.name">
 </mat-form-field>
@@ -23,3 +25,4 @@
   <mat-icon matSuffix>folder</mat-icon>
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="addGame($event)">Create Game</button>
+</mat-card>
