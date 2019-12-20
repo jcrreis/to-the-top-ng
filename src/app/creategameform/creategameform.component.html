@@ -18,4 +18,8 @@
   <mat-label>Trailer url</mat-label>
   <input matInput   [type]="text" [(ngModel)]="game.trailerUrl" value="game.trailerUrl"> 
 </mat-form-field>
+<mat-form-field appearance="outline">
+  <ngx-mat-file-input (change)="onFileSelected($event)" ></ngx-mat-file-input>
+  <mat-icon matSuffix>folder</mat-icon>
+</mat-form-field>
 <button mat-raised-button color="primary" (click)="addGame($event)">Create Game</button>

@@ -31,6 +31,13 @@ import { OrderModule } from 'ngx-order-pipe';
 import { EditgameformComponent } from './editgameform/editgameform.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CreategameformComponent } from './creategameform/creategameform.component';
+import { MatFileUploadModule } from 'angular-material-fileupload';
+import { MaterialFileInputModule, FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
+import { ReactiveFormsModule } from '@angular/forms'; 
+
+export const config: FileInputConfig = {
+  sizeUnit: 'Octet'
+};
 
 
 
@@ -69,10 +76,12 @@ import { CreategameformComponent } from './creategameform/creategameform.compone
     MatSelectModule,
     OrderModule,
     Ng2SearchPipeModule,
+    MatFileUploadModule,
+    MaterialFileInputModule,
+    ReactiveFormsModule,
   ],
-  providers: [
-  
-  ],
+  // add with module injection
+providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,21 +17,16 @@ export class UpvoteBtnComponent implements OnInit {
 
   isUpvoted: Boolean
   private subscription: Subscription;
-  userID: Number
-  private subscription2: Subscription;
   constructor(private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
     this.subscription = this.store.select(getUpvotedGames).subscribe(event => {
       this.isUpvoted = (event.some(el => el.id == this.gameId))
     })
-    this.subscription2 = this.store.select(getUser).subscribe(event => {
-      this.userID = (event.id)
-    })
   }
   ngOnDestroy(){
     this.subscription.unsubscribe()
-    this.subscription2.unsubscribe()
+
   }
 
   upvoteGame(event){

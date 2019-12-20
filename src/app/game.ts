@@ -1,3 +1,5 @@
+import { FileInput } from 'ngx-material-file-input';
+
 export class Game{
   id: number;
   name: string;
@@ -16,4 +18,14 @@ export class GameMinusId{
   storeLink: string;
   trailerUrl: string;
   upvotes: number;
+}
+
+export class GameMinusIdWithImage{
+  name: string;
+  price: number;
+  description: string;
+  storeLink: string;
+  trailerUrl: string;
+  upvotes: number;
+  image: File;
 }

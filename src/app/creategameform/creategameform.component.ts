@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GameMinusId } from '../game';
+import {  GameMinusIdWithImage } from '../game';
 import { GamesService } from '../games.service';
+import { FileInput } from 'ngx-material-file-input';
 
 @Component({
   selector: 'app-creategameform',
@@ -9,8 +10,8 @@ import { GamesService } from '../games.service';
 })
 export class CreategameformComponent implements OnInit {
 
-  game: GameMinusId 
-
+  game: GameMinusIdWithImage 
+  gameImage: File = null
   constructor(private gamesService: GamesService ) {}
 
   ngOnInit() {
@@ -21,11 +22,23 @@ export class CreategameformComponent implements OnInit {
       storeLink: "",
       trailerUrl: "",
       upvotes: 0,
+      image: null,
     }
+  }
+  onFileSelected(event){
+    this.gameImage = <File>event.target.files[0]
   }
 
   addGame(): void{
-    this.gamesService.addGame(this.game)
+    const fd =  new FormData()
+    fd.append('name',this.game.name)
+    fd.append('price',this.game.price.toString())
+    fd.append('description',this.game.description)
+    fd.append('storeLink',this.game.storeLink)
+    fd.append('trailerUrl',this.game.trailerUrl)
+    fd.append('image', this.gameImage , this.gameImage.name);
+
+    this.gamesService.addGame(fd)
   }
 
 }
