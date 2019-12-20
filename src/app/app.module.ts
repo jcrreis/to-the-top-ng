@@ -31,6 +31,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { EditgameformComponent } from './editgameform/editgameform.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CreategameformComponent } from './creategameform/creategameform.component';
+import { UserinfoComponent } from './userinfo/userinfo.component';
+import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 
 
 
@@ -47,6 +49,8 @@ import { CreategameformComponent } from './creategameform/creategameform.compone
     MainpageComponent,
     EditgameformComponent,
     CreategameformComponent,
+    UserinfoComponent,
+    ChangePasswordFormComponent,
   ],
   imports: [
     BrowserModule,
