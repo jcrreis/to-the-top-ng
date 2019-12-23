@@ -27,4 +27,15 @@ export class LoginService {
   
   }
 
+  changePassword( currentPassword: string, newPassword: string, newPassword1: string){
+    const userData = {
+      oldpassword: currentPassword,
+      new_password1: newPassword,
+      new_password2: newPassword1,
+    }
+    const observable = from(axios.post('http://localhost:8000/password/change/', userData));
+
+    return observable
+  }
+
 }
