@@ -53,6 +53,7 @@ export class GamesService {
     }
     axios.post(this.upvoteUrl + game_id ).then(response => {
       this.store.dispatch(upvoteGame({game: response.data}))
+      console.log(response.data)
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     })
   }
@@ -77,6 +78,7 @@ export class GamesService {
     axios.put('http://localhost:8000/games/'+game_id, game).then((response) => {
       const newGame: Game = response.data
       this.store.dispatch(updateGameFromStore({game: newGame}))
+      this.router.navigate(['/'])
     });
   }
   

@@ -1,7 +1,8 @@
 <mat-card>
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <img class="gameimg" mat-card-image src={{(gameObject).image}}>
     <mat-card-title>{{(game | async).name}}</mat-card-title>
+    <img mat-card-avatar src={{(gameObject).image}} alt="Game Avatar">
   </mat-card-header>
   <mat-card-content>
     <p>Upvotes: {{(game | async).upvotes}}</p>
