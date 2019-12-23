@@ -13,3 +13,8 @@ export interface UserResponse {
 export interface GameArrayResponse{
   data: Array<Game>
 }
+
+export interface ErrorMessage{
+  active: boolean,
+  message: string,
+}
