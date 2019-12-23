@@ -4,6 +4,7 @@
   <mat-label>Name</mat-label>
   <input matInput required [type]="text" [(ngModel)]="game.name" value="game.name">
 </mat-form-field>
+<mat-error *ngIf="nameError.active">{{nameError.message}}</mat-error>
 <mat-form-field appearance="outline">
   <mat-label>Price</mat-label>
   <input matInput  required [type]="text" [(ngModel)]="game.price"  value="game.price">

@@ -30,14 +30,11 @@ export class GamesService {
    
   }
 
-  addGame(game: FormData){
-    axios.post<Game>(this.gamesUrl, game).then((response) => {
-      this.store.dispatch(addToGameList({game: response.data}))
-      this.store.dispatch(addToCreatedGameList({game: response.data}))
-      this.router.navigate(['/']);
-    }).catch((error) => {
-      
-    })
+  
+
+  addGame(game: FormData):Observable<any>{
+    const observable = from(axios.post<Game>(this.gamesUrl, game))
+    return observable
   }
   getGamebyId(id : Number){
     axios.get<Game>(this.gamesUrl + id).then(response => {

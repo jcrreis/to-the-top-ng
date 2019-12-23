@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SignupService } from '../signup.service'
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ErrorMessage } from '../error';
+import { ErrorMessage } from 'src/utils/interfaces';
 
 
 @Component({

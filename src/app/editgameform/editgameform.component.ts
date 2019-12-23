@@ -4,8 +4,9 @@ import { GamesService } from '../games.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
-import { getSelectedGame } from '../store/selectors';
+import { getSelectedGame, getUser } from '../store/selectors';
 import { Subscription } from 'rxjs';
+import { User } from '../user';
 
 @Component({
   selector: 'app-editgameform',
@@ -22,6 +23,8 @@ export class EditgameformComponent implements OnInit {
   private subscription: Subscription;
   gameImage: File = null
   previewUrl:any = null;
+  userLoggedIn: User;
+  userLoaded: boolean = false
 
   constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
@@ -29,16 +32,19 @@ export class EditgameformComponent implements OnInit {
 
   ngOnInit() {
 
-  
+    this.store.select(getUser).subscribe(user => {
+      this.userLoggedIn = user
+      this.userLoaded = true
+      })
 
-   this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
-        this.game = game
-        if(game.image != null)
-        this.previewUrl = game.image
-    })
-    this.subscription = this.route.params.subscribe(event =>{
-      this.game_id = event.id
-      this.gamesService.getGamebyId(this.game_id)
+    this.gameSub = this.store.select(getSelectedGame).subscribe(game => {
+          this.game = game
+          if(game.image != null)
+          this.previewUrl = game.image
+      })
+      this.subscription = this.route.params.subscribe(event =>{
+        this.game_id = event.id
+        this.gamesService.getGamebyId(this.game_id)
     });
   }
 
@@ -71,5 +77,9 @@ export class EditgameformComponent implements OnInit {
     fd.append('image', this.gameImage , this.gameImage.name);
     
     this.gamesService.updateGame(fd,this.game_id)
+  }
+
+  isOwner(): boolean { 
+    return (this.userLoggedIn.id === this.game.user)
   }
 }

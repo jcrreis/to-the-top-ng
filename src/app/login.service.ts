@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from '../utils/axios'
 import { Store } from '@ngrx/store'
 import { iState } from './store/mystore.reducer'
-import {  from } from 'rxjs';
+import {  from, Observable } from 'rxjs';
 
 
 
@@ -15,7 +15,7 @@ export class LoginService {
   private userUrl = 'http://localhost:8000/user/'
   constructor(private store : Store<iState>) { }
 
-  login (username: String,password: String){
+  login (username: String,password: String):Observable<any>{
     
     const data = {
       username: username,
@@ -27,7 +27,7 @@ export class LoginService {
   
   }
 
-  changePassword( currentPassword: string, newPassword: string, newPassword1: string){
+  changePassword( currentPassword: string, newPassword: string, newPassword1: string):Observable<any>{
     const userData = {
       oldpassword: currentPassword,
       new_password1: newPassword,

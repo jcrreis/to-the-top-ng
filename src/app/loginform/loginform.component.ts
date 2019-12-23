@@ -6,11 +6,10 @@ import { User } from '../user'
 import { getUser } from '../store/selectors'
 import { Observable, Subscription, from } from 'rxjs';
 import { Router } from '@angular/router';
-import { UserResponse, GameArrayResponse } from 'src/utils/interfaces';
+import { UserResponse, GameArrayResponse, ErrorMessage } from 'src/utils/interfaces';
 import { addUserToStore, updateUpvotedGameList } from '../store/mystore.actions';
 import { first } from 'rxjs/operators';
 import axios from '../../utils/axios';
-import { ErrorMessage } from '../error';
 import { Game } from '../game';
 
 
@@ -77,13 +76,13 @@ export class LoginformComponent implements OnInit {
           this.store.dispatch(updateUpvotedGameList({upvotedGameList: upvotedGames}))
           this.router.navigate(['/'])
         })
-    },
-      (error) => {
-        this.loginError = {
-          active: true,
-          message: error.response.data.non_field_errors[0]
-        }
-    })
+    }
+    )},
+    (error) => {
+      this.loginError = {
+        active: true,
+        message: error.response.data.non_field_errors[0],
+      }
     })
   }
 }

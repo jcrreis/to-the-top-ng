@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {  GameMinusIdWithImage } from '../game';
 import { GamesService } from '../games.service';
 import { FileInput } from 'ngx-material-file-input';
+import { iState } from '../store/mystore.reducer';
+import { Store } from '@ngrx/store';
+import { addToGameList, addToCreatedGameList } from '../store/mystore.actions';
+import { Router } from '@angular/router';
+import { ErrorMessage } from 'src/utils/interfaces';
 
 @Component({
   selector: 'app-creategameform',
@@ -13,8 +18,13 @@ export class CreategameformComponent implements OnInit {
   game: GameMinusIdWithImage 
   gameImage: File = null
   previewUrl:any = null;
+
+  nameError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
   
-  constructor(private gamesService: GamesService ) {}
+  constructor(private gamesService: GamesService,private store: Store<iState>,private router: Router) {}
 
   ngOnInit() {
     this.game = {
@@ -44,15 +54,30 @@ export class CreategameformComponent implements OnInit {
   }
 
   addGame(): void{
+    debugger
     const fd =  new FormData()
     fd.append('name',this.game.name)
     fd.append('price',this.game.price.toString())
     fd.append('description',this.game.description)
     fd.append('storeLink',this.game.storeLink)
     fd.append('trailerUrl',this.game.trailerUrl)
-    fd.append('image', this.gameImage , this.gameImage.name);
-
-    this.gamesService.addGame(fd)
+    if(this.gameImage !== null) 
+      fd.append('image', this.gameImage , this.gameImage.name);
+    //TODO ELSE?
+    this.gamesService.addGame(fd).subscribe((response) => {
+      this.store.dispatch(addToGameList({game: response.data}))
+      this.store.dispatch(addToCreatedGameList({game: response.data}))
+      this.router.navigate(['/']);
+    },
+    (error) => {
+      //we might dont need this because this is part of form validation?
+      if(error.response.data.name !== undefined){
+        this.nameError = {
+          active: true,
+          message: "Name field cannot be blank"
+        }
+      }
+    })
   }
 
 }
