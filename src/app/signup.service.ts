@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import axios from '../utils/axios'
 
@@ -13,7 +13,7 @@ export class SignupService {
 
   constructor() { }
 
-  signup (username: string,password: string,email: string){
+  signup (username: string,password: string,email: string): Observable<any>{
     
     const data = {
       username: username,
@@ -21,6 +21,7 @@ export class SignupService {
       email: email,
     }
    const observable= from(axios.post(this.signupUrl, data))
+   console.log()
    return observable
      
   }

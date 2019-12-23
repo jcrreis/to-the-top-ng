@@ -35,6 +35,8 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { MaterialFileInputModule, FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { ReactiveFormsModule } from '@angular/forms'; 
 
+
+
 export const config: FileInputConfig = {
   sizeUnit: 'Octet'
 };

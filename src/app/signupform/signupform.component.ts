@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SignupService } from '../signup.service'
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ErrorMessage } from '../error';
 
 
 @Component({
@@ -24,6 +25,17 @@ export class SignupformComponent implements OnInit {
   password1: string = ""
 
   games = {}
+
+  usernameError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+
+  emailError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+  
 
   constructor(private signupService : SignupService,private router:Router) { }
 
@@ -55,8 +67,31 @@ export class SignupformComponent implements OnInit {
     $event.preventDefault()
     if(this.password === this.password1){
       this.signupService.signup(this.username,this.password,this.email).pipe(first(),)
-      .subscribe(()=> {
+      .subscribe((sucess)=> {
           this.router.navigate(['/login'])
+      },
+      (error) => {
+        console.log(error)
+        const data = error.response.data
+        if(data.email !== undefined){
+          console.log(data.email)
+          this.emailError = {
+            active: true,
+            message:'A ' + data.email
+          }
+        }
+
+        if(data.username !== undefined){
+          this.usernameError = {
+            active: true,
+            message: data.username
+          }
+        }
+        setTimeout(() => { 
+          this.emailError.active = false
+          this.usernameError.active = false
+        }, 4500);
+
       })
     }
     else{

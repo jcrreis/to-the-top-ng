@@ -10,6 +10,7 @@ import { UserResponse } from 'src/utils/interfaces';
 import { addUserToStore } from '../store/mystore.actions';
 import { first } from 'rxjs/operators';
 import axios from '../../utils/axios';
+import { ErrorMessage } from '../error';
 
 
 @Component({
@@ -31,6 +32,11 @@ export class LoginformComponent implements OnInit {
   private subscription: Subscription;
   private subscription2: Subscription;
   private userUrl = 'http://localhost:8000/user/'
+
+  loginError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
 
   constructor(private loginService : LoginService, private store : Store<iState>,private router:Router) { }
 
@@ -67,6 +73,11 @@ export class LoginformComponent implements OnInit {
           this.store.dispatch(addUserToStore({user: user}))
           this.router.navigate(['/'])
       })
+    },(error) => {
+      this.loginError = {
+        active: true,
+        message: error.response.data.non_field_errors[0]
+      }
     })
   }
 

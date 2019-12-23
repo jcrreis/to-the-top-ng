@@ -1,6 +1,8 @@
 <div class="container"> 
   <mat-card class="registercard">
     <h1>Register</h1>
+      <mat-error *ngIf="usernameError.active">{{usernameError.message}}</mat-error>
+      <mat-error *ngIf="emailError.active">{{emailError.message}}</mat-error>
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
         <input matInput placeholder="Enter your username" required [type]="text" (change)="handleUsernameChange($event)" value="">

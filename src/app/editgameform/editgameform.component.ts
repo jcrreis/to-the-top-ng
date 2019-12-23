@@ -71,6 +71,5 @@ export class EditgameformComponent implements OnInit {
     fd.append('image', this.gameImage , this.gameImage.name);
     
     this.gamesService.updateGame(fd,this.game_id)
-    this.router.navigate(['/'])
   }
 }
