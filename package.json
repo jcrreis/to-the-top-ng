@@ -27,6 +27,7 @@
     "angular-material-fileupload": "^2.0.0",
     "axios": "^0.19.0",
     "ng2-search-filter": "^0.5.1",
+    "ngx-embed-video": "^1.0.4",
     "ngx-material-file-input": "^2.0.0",
     "ngx-order-pipe": "^2.0.4",
     "rxjs": "~6.4.0",
