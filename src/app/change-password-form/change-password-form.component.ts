@@ -50,7 +50,6 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   changePassword(){
-    debugger
     this.isCurrentPassInvalid = this.isCurrentPasswordInvalid()
     this.isNewPassInvalid = this.isNewPasswordInvalid()
     this.isNewPass1Invalid = this.isNewPassword1Invalid()
