@@ -6,6 +6,7 @@ import { getUpvotedGames, getUser } from '../store/selectors';
 import { Subscription } from 'rxjs';
 import { User } from '../user';
 import { upvoteGame, addToUpvotedGameList } from '../store/mystore.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upvote-btn',
@@ -18,7 +19,7 @@ export class UpvoteBtnComponent implements OnInit {
 
   isUpvoted: Boolean
   private subscription: Subscription;
-  constructor(private gamesService : GamesService,private store : Store<iState>) { }
+  constructor(private router: Router,private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
     this.subscription = this.store.select(getUpvotedGames).subscribe(event => {
@@ -36,7 +37,7 @@ export class UpvoteBtnComponent implements OnInit {
       console.log(response.data)
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     },(error) => {
-      alert("You need to be auth to upvote a game")
+      this.router.navigate(['/login'])
     })
     event.stopPropagation();
   }
