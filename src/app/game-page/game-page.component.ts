@@ -50,6 +50,9 @@ export class GamePageComponent implements OnInit {
         this.editableGame = game.user === user.id
         this.trailer_url = this.embedService.embed(game.trailerUrl)
       }
+      this.gameObject = game
+      if(user != null)
+        this.editableGame = game.user === user.id
     })
   })
   }
