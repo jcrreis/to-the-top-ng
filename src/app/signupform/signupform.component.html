@@ -1,6 +1,7 @@
 <div class="container"> 
   <mat-card class="registercard">
     <h1>Register</h1>
+      <mat-error *ngIf="passwordError.active">{{passwordError.message}}</mat-error>
       <mat-error *ngIf="usernameError.active">{{usernameError.message}}</mat-error>
       <mat-error *ngIf="emailError.active">{{emailError.message}}</mat-error>
       <mat-form-field appearance="outline">

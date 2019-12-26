@@ -5,6 +5,7 @@ import { iState } from '../store/mystore.reducer';
 import { getUpvotedGames, getUser } from '../store/selectors';
 import { Subscription } from 'rxjs';
 import { User } from '../user';
+import { upvoteGame, addToUpvotedGameList } from '../store/mystore.actions';
 
 @Component({
   selector: 'app-upvote-btn',
@@ -30,7 +31,13 @@ export class UpvoteBtnComponent implements OnInit {
   }
 
   upvoteGame(event){
-    this.gamesService.upvoteGame(this.gameId)
+    this.gamesService.upvoteGame(this.gameId).subscribe((response) => {
+      this.store.dispatch(upvoteGame({game: response.data}))
+      console.log(response.data)
+      this.store.dispatch(addToUpvotedGameList({game:response.data}))
+    },(error) => {
+      alert("You need to be auth to upvote a game")
+    })
     event.stopPropagation();
   }
   delUpvoteGame(event){

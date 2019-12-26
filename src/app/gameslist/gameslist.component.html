@@ -2,7 +2,9 @@
   <h2>Games</h2>
 
   <div class="games">
+   <div *ngIf="isUserLoggedIn()">
     <button mat-raised-button color="primary" (click)="redirectToForm()" class="addbtn"><mat-icon>add</mat-icon>Add Game</button>
+   </div>
     <div class="actions">
       <mat-form-field>
         <mat-label>Order By</mat-label>

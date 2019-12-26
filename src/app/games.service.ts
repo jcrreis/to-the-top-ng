@@ -44,15 +44,12 @@ export class GamesService {
     })
   }
 
-  upvoteGame(game_id: Number){
+  upvoteGame(game_id: Number): Observable<any>{
     const data = {
       game: game_id
     }
-    axios.post(this.upvoteUrl + game_id ).then(response => {
-      this.store.dispatch(upvoteGame({game: response.data}))
-      console.log(response.data)
-      this.store.dispatch(addToUpvotedGameList({game:response.data}))
-    })
+    
+    return from(axios.post(this.upvoteUrl + game_id ))
   }
 
   delUpvoteGame(id: Number){

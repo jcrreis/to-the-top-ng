@@ -54,7 +54,6 @@ export class CreategameformComponent implements OnInit {
   }
 
   addGame(): void{
-    debugger
     const fd =  new FormData()
     fd.append('name',this.game.name)
     fd.append('price',this.game.price.toString())

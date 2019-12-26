@@ -35,6 +35,11 @@ export class SignupformComponent implements OnInit {
     active: false,
     message: ""
   }
+
+  passwordError: ErrorMessage = {
+    active: false,
+    message: "Passwords don't match"
+  }
   
 
   constructor(private signupService : SignupService,private router:Router) { }
@@ -95,7 +100,11 @@ export class SignupformComponent implements OnInit {
       })
     }
     else{
-      alert("Passwords should match")
+      this.passwordError.active = true
+
+      setTimeout(() => { 
+        this.passwordError.active = false
+      }, 4500);
     }
 
   }

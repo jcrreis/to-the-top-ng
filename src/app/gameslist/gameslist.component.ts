@@ -32,6 +32,9 @@ export class GameslistComponent implements OnInit {
   reverse: Boolean
   subscription: Subscription
   filterText: string
+  subscriptionUser: Subscription
+  userLoggedIn: User = undefined
+
   constructor(private gamesService : GamesService, private store : Store<iState>,private router:Router,private orderPipe: OrderPipe) {   }
 
 
@@ -55,6 +58,9 @@ export class GameslistComponent implements OnInit {
     this.reverse = false
     this.orders = ['name','upvotes']
     this.getGames()
+    this.subscriptionUser = this.store.select(getUser).subscribe(user => {
+      this.userLoggedIn = user
+    })
   }
 
   
@@ -88,5 +94,10 @@ export class GameslistComponent implements OnInit {
 
   ngOnDestroy(){
     this.subscription.unsubscribe()
+  }
+
+  isUserLoggedIn(): boolean{
+
+    return this.userLoggedIn !== null
   }
 }
