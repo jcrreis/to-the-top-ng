@@ -10,6 +10,12 @@
     <p>Description: {{(game | async).description}}</p>
     <p>StoreLink: {{(game | async).storeLink}}</p>
     <p>TrailerUrl: {{(game | async).trailerUrl}}</p>
+    <div class="video">
+    <video controls (click)="toggleVideo()" #videoPlayer>
+        <source src="{{(game | async).trailerUrl}}" type="video/mp4" />
+        Browser not supported
+    </video>
+</div>
   </mat-card-content>
   <mat-card-actions>
       <app-upvote-btn gameId="{{(game | async).id}}">
