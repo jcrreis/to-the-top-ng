@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { ErrorMessage } from 'src/utils/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password-form',
@@ -15,10 +16,15 @@ export class ChangePasswordFormComponent implements OnInit {
 
   newPasswordError: ErrorMessage = {
     active: false,
-    message: "Passwords don't match.Try again please."
+    message: ""
   }
 
-  constructor(private loginService : LoginService) { }
+  oldPasswordError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+
+  constructor(private loginService : LoginService,private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,15 +32,26 @@ export class ChangePasswordFormComponent implements OnInit {
   changePassword(){
     if(this.newpassword === this.newpassword1){
       this.loginService.changePassword(this.currentpassword,this.newpassword,this.newpassword1).
-      subscribe((response) => {
-
+      subscribe(() => {
+        this.router.navigate['/user']
       },(error) =>{
-        console.log(error.response.data)
-
-      })     
+        debugger
+        if(error.response.data['old_password'] !== undefined){
+          this.oldPasswordError = {
+            active: true,
+            message: "Your current password is wrong."
+          }
+          console.log(this.oldPasswordError)
+        }
+      })
     }
-    else
-      this.newPasswordError.active = true
-  }
+    else {
+      this.newPasswordError = {
+        active: true,
+        message: "New passwords fields didn't match"
+      }
+      console.log(this.newPasswordError)
+    }
+    }
 
 }

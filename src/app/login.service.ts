@@ -29,7 +29,7 @@ export class LoginService {
 
   changePassword( currentPassword: string, newPassword: string, newPassword1: string):Observable<any>{
     const userData = {
-      oldpassword: currentPassword,
+      old_password: currentPassword,
       new_password1: newPassword,
       new_password2: newPassword1,
     }

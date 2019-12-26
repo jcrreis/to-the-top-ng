@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
 import { getUpvotedGames, getUser } from '../store/selectors';
 import { Subscription } from 'rxjs';
-import { User } from '../user';
 import { upvoteGame, addToUpvotedGameList } from '../store/mystore.actions';
 import { Router } from '@angular/router';
 
@@ -36,7 +35,7 @@ export class UpvoteBtnComponent implements OnInit {
       this.store.dispatch(upvoteGame({game: response.data}))
       console.log(response.data)
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
-    },(error) => {
+    },() => {
       this.router.navigate(['/login'])
     })
     event.stopPropagation();
