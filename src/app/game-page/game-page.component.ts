@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
 import { User } from '../user';
 import { EmbedVideoService } from 'ngx-embed-video';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-game-page',
@@ -30,7 +31,7 @@ export class GamePageComponent implements OnInit {
   gameSub: Subscription;
   userSub: Subscription;
   gameObject: GameMinusId
-
+  trailerUrl: string = null
   constructor(private embedService: EmbedVideoService,private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class GamePageComponent implements OnInit {
     this.gameSub = this.game.subscribe(game => {
       this.gameObject = game
       this.editableGame = game.user === user.id
+      
     })
   })
   }
@@ -55,11 +57,12 @@ export class GamePageComponent implements OnInit {
   }
 
   videoEmbed() {
-    let trailerUrl
+    if(this.trailerUrl!==null){
     this.game.subscribe(game => {
-       trailerUrl = game.trailerUrl
-    })
-    return this.embedService.embed(trailerUrl)
+       this.trailerUrl = game.trailerUrl
+    }).unsubscribe()
+    }
+    return this.embedService.embed(this.trailerUrl)
   }
   navigateToEditForm(): void {
     this.router.navigate(['/edit',this.game_id])
