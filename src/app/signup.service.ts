@@ -13,14 +13,9 @@ export class SignupService {
 
   constructor() { }
 
-  signup (username: string,password: string,email: string): Observable<any>{
+  signup (fd: FormData): Observable<any>{
     
-    const data = {
-      username: username,
-      password: password,
-      email: email,
-    }
-   const observable= from(axios.post(this.signupUrl, data))
+   const observable= from(axios.post(this.signupUrl, fd))
    console.log()
    return observable
      

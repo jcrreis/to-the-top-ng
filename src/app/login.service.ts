@@ -26,6 +26,9 @@ export class LoginService {
     return observable;
   
   }
+  userImage(userid: number): Observable<any>{
+    return from(axios.get("http://localhost:8000/users/"+userid))
+  }
 
   changePassword( currentPassword: string, newPassword: string, newPassword1: string):Observable<any>{
     const userData = {
