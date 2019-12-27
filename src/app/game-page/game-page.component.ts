@@ -31,6 +31,7 @@ export class GamePageComponent implements OnInit {
   userSub: Subscription;
   gameObject: GameMinusId
   trailer_url: any
+  isFirst : boolean = true
   constructor(private embedService: EmbedVideoService,private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
@@ -44,10 +45,13 @@ export class GamePageComponent implements OnInit {
     
   this.userSub = this.user.subscribe(user => {
     this.gameSub = this.game.subscribe(game => {
+      debugger
       this.gameObject = game
       this.editableGame = game.user === user.id
-      if(this.trailer_url == null)
+      if(this.trailer_url == null && !this.isFirst)
         this.trailer_url = this.embedService.embed(game.trailerUrl)
+      else this.isFirst = false
+      console.log(this.trailer_url)
     })
   })
   }

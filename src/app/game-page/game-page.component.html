@@ -10,6 +10,7 @@
     <p>Description: {{(game | async).description}}</p>
     <p>StoreLink: {{(game | async).storeLink}}</p>
     <p>TrailerUrl: {{(game | async).trailerUrl}}</p>
+    <div *ngIf="trailer_url !== undefined" [innerHTML]="trailer_url"></div>
   </mat-card-content>
   <mat-card-actions>
       <app-upvote-btn gameId="{{(game | async).id}}">
@@ -20,4 +21,3 @@
     </div>
   </mat-card-actions>
 </mat-card>
-<div [innerHTML]="trailer_url"></div>
