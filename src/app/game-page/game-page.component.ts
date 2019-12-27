@@ -45,13 +45,11 @@ export class GamePageComponent implements OnInit {
     
   this.userSub = this.user.subscribe(user => {
     this.gameSub = this.game.subscribe(game => {
-      debugger
-      this.gameObject = game
-      this.editableGame = game.user === user.id
-      if(this.trailer_url == null && !this.isFirst)
+      if(game.id === this.game_id){
+        this.gameObject = game
+        this.editableGame = game.user === user.id
         this.trailer_url = this.embedService.embed(game.trailerUrl)
-      else this.isFirst = false
-      console.log(this.trailer_url)
+      }
     })
   })
   }
