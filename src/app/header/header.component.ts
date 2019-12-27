@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.subscriptionUser = this.store.select(getUser).subscribe(user => {
-      debugger
       this.userLoggedIn = user
     })
   }

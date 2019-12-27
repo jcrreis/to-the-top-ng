@@ -31,6 +31,7 @@ export class UpvoteBtnComponent implements OnInit {
   }
 
   upvoteGame(event){
+    event.preventDefault()
     this.gamesService.upvoteGame(this.gameId).subscribe((response) => {
       this.store.dispatch(upvoteGame({game: response.data}))
       console.log(response.data)
@@ -41,6 +42,7 @@ export class UpvoteBtnComponent implements OnInit {
     event.stopPropagation();
   }
   delUpvoteGame(event){
+    event.preventDefault()
     this.gamesService.delUpvoteGame(this.gameId)
     event.stopPropagation();
   }

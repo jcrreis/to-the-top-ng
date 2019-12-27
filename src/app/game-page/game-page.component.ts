@@ -42,6 +42,12 @@ export class GamePageComponent implements OnInit {
       this.gamesService.getGamebyId(this.game_id)
     });
   this.editableGame = false
+  if(this.trailerUrl===null){
+    debugger
+    this.game.subscribe(game => {
+       this.trailerUrl = game.trailerUrl
+    }).unsubscribe()
+    }
   this.userSub = this.user.subscribe(user => {
     this.gameSub = this.game.subscribe(game => {
       this.gameObject = game
@@ -57,11 +63,6 @@ export class GamePageComponent implements OnInit {
   }
 
   videoEmbed() {
-    if(this.trailerUrl!==null){
-    this.game.subscribe(game => {
-       this.trailerUrl = game.trailerUrl
-    }).unsubscribe()
-    }
     return this.embedService.embed(this.trailerUrl)
   }
   navigateToEditForm(): void {
