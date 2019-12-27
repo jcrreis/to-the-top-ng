@@ -8,12 +8,13 @@
     </mat-form-field>   
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'hide'" (change)="handlePasswordChange($event)" value="">
+      <input matInput password placeholder="Enter your password" [type]="hide ? 'password' : 'text'" (change)="handlePasswordChange($event)" value="">
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="login($event)">Login</button>
+   <a href="http://localhost:4200/resetpassword/" >Forgot your password ?</a>
   </mat-card>
 </div>
 
