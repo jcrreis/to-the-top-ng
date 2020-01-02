@@ -43,6 +43,8 @@ export const config: FileInputConfig = {
 
 import { UserinfoComponent } from './userinfo/userinfo.component';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
 
 
 
@@ -62,6 +64,8 @@ import { ChangePasswordFormComponent } from './change-password-form/change-passw
     CreategameformComponent,
     UserinfoComponent,
     ChangePasswordFormComponent,
+    ResetPasswordComponent,
+    ResetPasswordConfirmationComponent,
   ],
   imports: [
     BrowserModule,

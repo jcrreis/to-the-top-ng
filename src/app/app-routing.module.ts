@@ -9,6 +9,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
 import {EditgameformComponent} from './editgameform/editgameform.component'
 import {CreategameformComponent} from './creategameform/creategameform.component'
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginformComponent },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'edit/:id',component: EditgameformComponent },
   { path: 'create',component: CreategameformComponent},
   { path: 'changepassword', component: ChangePasswordFormComponent},
+  { path: 'resetpassword' ,component: ResetPasswordComponent},
+  { path: 'resetpassword/:str/:str' , component: ResetPasswordConfirmationComponent},
   { path: '', component: MainpageComponent },
 
 ];
