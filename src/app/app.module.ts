@@ -45,6 +45,7 @@ import { UserinfoComponent } from './userinfo/userinfo.component';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 
 
@@ -66,6 +67,7 @@ import { ResetPasswordConfirmationComponent } from './reset-password-confirmatio
     ChangePasswordFormComponent,
     ResetPasswordComponent,
     ResetPasswordConfirmationComponent,
+    ActivateAccountComponent,
   ],
   imports: [
     BrowserModule,

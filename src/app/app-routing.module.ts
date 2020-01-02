@@ -11,6 +11,7 @@ import {CreategameformComponent} from './creategameform/creategameform.component
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordConfirmationComponent } from './reset-password-confirmation/reset-password-confirmation.component';
+import { ActivateAccountComponent } from './activate-account/activate-account.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginformComponent },
@@ -24,9 +25,10 @@ const routes: Routes = [
   { path: 'resetpassword' ,component: ResetPasswordComponent},
   { path: 'resetpassword/:str/:str' , component: ResetPasswordConfirmationComponent},
   { path: '', component: MainpageComponent },
+  { path: 'activate', component: ActivateAccountComponent}
 
 ];
-
+///id:str/token:str'
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

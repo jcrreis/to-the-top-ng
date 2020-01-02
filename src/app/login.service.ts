@@ -40,5 +40,11 @@ export class LoginService {
 
     return observable
   }
+  //activate/<str:uidb64>/<str:token>/
+  activateAccount(userid: string,token: string){
+
+    return from(axios.post('http://localhost:8000/users/activate/'+userid+'/'+token+'/'));
+  }
+
 
 }

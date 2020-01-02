@@ -80,8 +80,6 @@ export class SignupformComponent implements OnInit {
     fd.append('email',this.email)
     if(this.userImage !== null)
       fd.append('image', this.userImage , this.userImage.name)
-    else
-      fd.append('image',null)
     if(this.password === this.password1){
       this.signupService.signup(fd).pipe(first(),)
       .subscribe((sucess)=> {
