@@ -24,6 +24,10 @@ export class SignupformComponent implements OnInit {
   @Input()
   password1: string = ""
 
+  userImage: File  = null
+
+  previewUrl: any
+
   games = {}
 
   usernameError: ErrorMessage = {
@@ -70,13 +74,21 @@ export class SignupformComponent implements OnInit {
 
   signup($event): void {
     $event.preventDefault()
+    const fd =  new FormData()
+    fd.append('username',this.username)
+    fd.append('password',this.password)
+    fd.append('email',this.email)
+    if(this.userImage !== null)
+      fd.append('image', this.userImage , this.userImage.name)
+    else
+      fd.append('image',null)
     if(this.password === this.password1){
-      this.signupService.signup(this.username,this.password,this.email).pipe(first(),)
+      this.signupService.signup(fd).pipe(first(),)
       .subscribe((sucess)=> {
           this.router.navigate(['/login'])
       },
       (error) => {
-        console.log(error)
+        console.log(error.response.data)
         const data = error.response.data
         if(data.email !== undefined){
           console.log(data.email)
@@ -107,6 +119,22 @@ export class SignupformComponent implements OnInit {
       }, 4500);
     }
 
+  }
+
+  onFileSelected(event){
+    this.userImage = <File>event.target.files[0]
+    this.preview()
+  }
+
+  preview(){
+    var mimeType = this.userImage.type;
+    if(mimeType.match(/image\/*/) == null)
+      return;
+    var reader = new FileReader();
+    reader.readAsDataURL(this.userImage);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
   }
 
 }

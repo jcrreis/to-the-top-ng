@@ -4,6 +4,7 @@
     <mat-card-title>User info</mat-card-title>
   </mat-card-header>
   <mat-card class="card">
+    <img *ngIf="img !== null" class="userimg" mat-card-image src={{img}}>
     <mat-card-content>
       <p>Username: {{user.name}}</p>
       <p>Email: {{user.email}}</p>

@@ -67,7 +67,8 @@ export class LoginformComponent implements OnInit {
           const user: User = {
             id: dataU['pk'],
             name: dataU['username'],
-            email: dataU['email']
+            email: dataU['email'],
+            image: dataU['image']
           }
           this.store.dispatch(addUserToStore({user: user}))
       from(axios.get("http://localhost:8000/upvotes/users/"+user.id+"/games")).pipe(first(),)
