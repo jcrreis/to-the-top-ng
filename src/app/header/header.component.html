@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <button mat-raised-button color="primary" (click)="goToPage('')">Home</button>
-  <div *ngIf="user | async;then userLogged else userNotLogged"></div>
+  <div *ngIf="isUserLoggedIn();then userLogged else userNotLogged"></div>
     <ng-template #userLogged>
       <button mat-raised-button color="primary" (click)="logoutUser()">Logout</button>
     </ng-template>
@@ -9,6 +9,6 @@
       <button mat-raised-button color="primary" (click)="goToPage('signup')">Register</button>
     </ng-template>
   <div class="right-elements">
-    <h1 *ngIf="user | async" (click)="goToPage('/user')">{{(user | async).name}}</h1>
+    <h1 *ngIf="isUserLoggedIn()" (click)="goToPage('/user')">{{userLoggedIn.name}}</h1>
   </div>
 </mat-toolbar>

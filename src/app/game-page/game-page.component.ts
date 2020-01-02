@@ -10,7 +10,7 @@ import { getSelectedGame,getUser } from '../store/selectors';
 import { Store } from '@ngrx/store';
 import { iState } from '../store/mystore.reducer';
 import { User } from '../user';
-
+import { EmbedVideoService } from 'ngx-embed-video';
 
 @Component({
   selector: 'app-game-page',
@@ -30,8 +30,9 @@ export class GamePageComponent implements OnInit {
   gameSub: Subscription;
   userSub: Subscription;
   gameObject: GameMinusId
-
-  constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
+  trailer_url: any
+  isFirst : boolean = true
+  constructor(private embedService: EmbedVideoService,private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
   ngOnInit() {
   this.user = this.store.select(getUser)
@@ -41,10 +42,14 @@ export class GamePageComponent implements OnInit {
       this.gamesService.getGamebyId(this.game_id)
     });
   this.editableGame = false
+    
   this.userSub = this.user.subscribe(user => {
     this.gameSub = this.game.subscribe(game => {
-      this.gameObject = game
-      this.editableGame = game.user === user.id
+      if(game.id === this.game_id){
+        this.gameObject = game
+        this.editableGame = game.user === user.id
+        this.trailer_url = this.embedService.embed(game.trailerUrl)
+      }
     })
   })
   }

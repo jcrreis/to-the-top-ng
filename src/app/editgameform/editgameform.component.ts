@@ -74,7 +74,8 @@ export class EditgameformComponent implements OnInit {
     fd.append('description',this.game.description)
     fd.append('storeLink',this.game.storeLink)
     fd.append('trailerUrl',this.game.trailerUrl)
-    fd.append('image', this.gameImage , this.gameImage.name);
+    if(this.gameImage !== null)
+      fd.append('image', this.gameImage , this.gameImage.name);
     
     this.gamesService.updateGame(fd,this.game_id)
   }

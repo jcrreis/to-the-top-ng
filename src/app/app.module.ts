@@ -34,8 +34,8 @@ import { CreategameformComponent } from './creategameform/creategameform.compone
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { MaterialFileInputModule, FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } from 'ngx-material-file-input';
 import { ReactiveFormsModule } from '@angular/forms'; 
-
-
+import { HttpClientModule } from '@angular/common/http';
+import { EmbedVideo } from 'ngx-embed-video';
 
 export const config: FileInputConfig = {
   sizeUnit: 'Octet'
@@ -87,6 +87,7 @@ import { ChangePasswordFormComponent } from './change-password-form/change-passw
     MatFileUploadModule,
     MaterialFileInputModule,
     ReactiveFormsModule,
+    HttpClientModule, EmbedVideo.forRoot()
   ],
   // add with module injection
 providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }],
