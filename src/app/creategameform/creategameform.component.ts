@@ -23,6 +23,26 @@ export class CreategameformComponent implements OnInit {
     active: false,
     message: ""
   }
+  priceError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+  descriptionError: ErrorMessage ={
+    active: false,
+    message: ""
+  }
+  storeLinkError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+  trailerUrlError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
+  imageError: ErrorMessage = {
+    active: false,
+    message: ""
+  }
   
   constructor(private gamesService: GamesService,private store: Store<iState>,private router: Router) {}
 
@@ -69,11 +89,40 @@ export class CreategameformComponent implements OnInit {
       this.router.navigate(['/']);
     },
     (error) => {
-      //we might dont need this because this is part of form validation?
       if(error.response.data.name !== undefined){
         this.nameError = {
           active: true,
           message: "Name field cannot be blank"
+        }
+      }
+      if(error.response.data.price !== undefined){
+        this.priceError = {
+          active: true,
+          message: error.response.data.price
+        }
+      }
+      if(error.response.data.description !== undefined){
+        this.descriptionError = {
+          active:true,
+          message: error.response.data.description
+        }
+      }
+      if(error.response.data.storeLink !== undefined){
+        this.storeLinkError = {
+          active: true,
+          message: error.response.data.storeLink
+        }
+      }
+      if(error.response.data.trailerUrl !== undefined){
+        this.trailerUrlError = {
+          active: true,
+          message: error.response.data.trailerUrl
+        }
+      }
+      if(error.response.data.image !== undefined){
+        this.imageError = {
+          active: true,
+          message: error.response.data.image
         }
       }
     })
