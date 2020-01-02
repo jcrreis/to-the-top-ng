@@ -14,16 +14,16 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Enter your password" required [type]="hide ? 'password' : 'text'" (change)="handlePasswordChange($event)" value="">
+        <input matInput placeholder="Enter your password" required [type]="hide ? 'text' : 'password'" (change)="handlePasswordChange($event)" value="">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Confirm Password</mat-label>
-        <input matInput placeholder="Enter your password again" required [type]="hide ? 'password' : 'text'" (change)="handlePasswordConfirmationChange($event)" value="">
+        <input matInput placeholder="Enter your password again" required [type]="hide ? 'text' : 'password'" (change)="handlePasswordConfirmationChange($event)" value="">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field appearance="outline">
