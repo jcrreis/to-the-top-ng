@@ -8,19 +8,20 @@
     <p>Upvotes: {{(game | async).upvotes}}</p>
     <p>Price: {{(game | async).price}}</p>
     <p>Description: {{(game | async).description}}</p>
-    <p>StoreLink: {{(game | async).storeLink}}</p>
-    <p>TrailerUrl: {{(game | async).trailerUrl}}</p>
-    <div *ngIf="trailer_url !== undefined" [innerHTML]="trailer_url"></div>
     <p>StoreLink:  
       <a href="{{(game | async).storeLink}}" target="_blank" rel="noopener">
       {{(game | async).storeLink}}
       </a>    
     </p>
-    <p>TrailerUrl: 
-      <a href="{{(game | async).trailerUrl}}" target="_blank" rel="noopener">
-        {{(game | async).trailerUrl}}
-      </a> 
+    <div *ngIf="trailer_url !== undefined;else hyperLink"[innerHTML]="trailer_url"></div>
+    <ng-template #hyperLink>
+      <p>
+        TrailerUrl: 
+        <a href="{{(game | async).trailerUrl}}" target="_blank" rel="noopener">
+          {{(game | async).trailerUrl}}
+        </a> 
       </p>
+    </ng-template>
   </mat-card-content>
   <mat-card-actions>
       <app-upvote-btn gameId="{{(game | async).id}}">

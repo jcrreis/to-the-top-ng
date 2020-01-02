@@ -45,7 +45,8 @@ export class GamePageComponent implements OnInit {
     
   this.userSub = this.user.subscribe(user => {
     this.gameSub = this.game.subscribe(game => {
-      if(game.id === this.game_id){
+      if(game.id == this.game_id){
+        debugger
         this.gameObject = game
         this.editableGame = game.user === user.id
         this.trailer_url = this.embedService.embed(game.trailerUrl)
