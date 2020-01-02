@@ -46,5 +46,8 @@ export class LoginService {
     return from(axios.post('http://localhost:8000/users/activate/'+userid+'/'+token+'/'));
   }
 
+  getUser(){
+    return from(axios.get(this.userUrl))
+  }
 
 }

@@ -16,9 +16,8 @@ export class ActivateAccountComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
-        this.loginService.activateAccount(params.user,params.token).subscribe( (response) => {
+        this.loginService.activateAccount(params.user,params.token).subscribe( (response: Object) => {
           this.message = response.data
-          console.log(response)
         })
       })
   }

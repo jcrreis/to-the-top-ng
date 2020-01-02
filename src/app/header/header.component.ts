@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
 
   logoutUser(){
     this.logoutService.logout()
+    this.router.navigate(['/'])
   }
   isUserLoggedIn(): boolean{
 
