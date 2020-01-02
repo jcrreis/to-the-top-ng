@@ -50,4 +50,21 @@ export class LoginService {
     return from(axios.get(this.userUrl))
   }
 
+  resetPasswordRequest(email: string){
+    const data = {
+      email: email,
+    }
+    return from(axios.post('http://localhost:8000/password/reset/',data))
+  }
+
+  resetPassword(id:string,token:string,password:string,password1:string){
+    const data = {
+      uid: id,
+      token: token,
+      new_password1: password,
+      new_password2: password1,
+    }
+    return from(axios.post('http://localhost:8000/password/reset/confirm/',data))
+  }
+
 }

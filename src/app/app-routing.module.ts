@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'create',component: CreategameformComponent},
   { path: 'changepassword', component: ChangePasswordFormComponent},
   { path: 'resetpassword' ,component: ResetPasswordComponent},
-  { path: 'resetpassword/:str/:str' , component: ResetPasswordConfirmationComponent},
+  { path: 'resetpassword/confirm' , component: ResetPasswordConfirmationComponent},
   { path: '', component: MainpageComponent },
   { path: 'activate', component: ActivateAccountComponent}
 

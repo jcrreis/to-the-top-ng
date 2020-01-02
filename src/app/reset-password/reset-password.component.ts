@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
@@ -10,9 +12,11 @@ import { Router } from '@angular/router';
 
 export class ResetPasswordComponent implements OnInit {
 
-  email: String 
+  email: string 
 
-  constructor(private router:Router) { }
+  subscription: Subscription
+  message: string = null
+  constructor(private router:Router,private loginService:LoginService) { }
 
   ngOnInit() {
   }
@@ -22,7 +26,15 @@ export class ResetPasswordComponent implements OnInit {
     this.email = $event.target.value
   }
   submit(){
-    this.router.navigate(['/resetpassword/MTQU/asdhashdas234-52hg'])
+    this.subscription = this.loginService.resetPasswordRequest(this.email).subscribe((response:any) =>{
+      this.message = response.data
+      console.log(response.data)
+    })
   }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
+  }
+
 
 }
