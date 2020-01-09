@@ -93,7 +93,8 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
     MatFileUploadModule,
     MaterialFileInputModule,
     ReactiveFormsModule,
-    HttpClientModule, EmbedVideo.forRoot()
+    HttpClientModule, 
+    EmbedVideo.forRoot()
   ],
   // add with module injection
 providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }],
