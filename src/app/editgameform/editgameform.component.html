@@ -3,11 +3,11 @@
       <h1>Edit Game</h1>
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
-    <input matInput required [type]="text" [(ngModel)]="game.name" value="game.name">
+    <input matInput required type="text" [(ngModel)]="game.name" value="game.name">
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Price</mat-label>
-    <input matInput  required [type]="text" [(ngModel)]="game.price"  value="game.price">
+    <input matInput  required type="text" [(ngModel)]="game.price"  value="game.price">
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
@@ -15,11 +15,11 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Store link</mat-label>
-    <input matInput   [type]="text" [(ngModel)]="game.storeLink" value="game.storeLink">
+    <input matInput   type="text" [(ngModel)]="game.storeLink" value="game.storeLink">
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Trailer url</mat-label>
-    <input matInput   [type]="text" [(ngModel)]="game.trailerUrl" value="game.trailerUrl"> 
+    <input matInput   type="text" [(ngModel)]="game.trailerUrl" value="game.trailerUrl"> 
   </mat-form-field>
   <mat-form-field appearance="outline">
     <ngx-mat-file-input (change)="onFileSelected($event)" ></ngx-mat-file-input>
@@ -28,7 +28,7 @@
   <div class="image-preview" *ngIf="previewUrl">
       <img [src]="previewUrl"/>                 
   </div>
-  <button mat-raised-button color="primary" (click)="editGame($event)">Edit Game</button>
+  <button mat-raised-button color="primary" (click)="editGame()">Edit Game</button>
   </mat-card>
 </div>
 

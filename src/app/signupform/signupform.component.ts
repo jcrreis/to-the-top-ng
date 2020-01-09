@@ -24,6 +24,8 @@ export class SignupformComponent implements OnInit {
   @Input()
   password1: string = ""
 
+  hide: boolean = false
+
   userImage: File  = null
 
   previewUrl: any

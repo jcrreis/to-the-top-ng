@@ -6,11 +6,11 @@
       <mat-error *ngIf="emailError.active">{{emailError.message}}</mat-error>
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Enter your username" required [type]="text" (change)="handleUsernameChange($event)" value="">
+        <input matInput placeholder="Enter your username" required type="text" (change)="handleUsernameChange($event)" value="">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Email Address</mat-label>
-        <input matInput placeholder="Enter your email" required [type]="text" (change)="handleEmailChange($event)" value="">
+        <input matInput placeholder="Enter your email" required type="text" (change)="handleEmailChange($event)" value="">
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>

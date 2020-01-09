@@ -4,7 +4,7 @@
     <mat-error *ngIf="loginError.active">{{loginError.message}}</mat-error>
     <mat-form-field appearance="outline">
       <mat-label>Username</mat-label>
-      <input matInput placeholder="Enter your username" [type]="text" (change)="handleUsernameChange($event)" value="">
+      <input matInput placeholder="Enter your username" type="text" (change)="handleUsernameChange($event)" value="">
     </mat-form-field>   
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>

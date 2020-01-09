@@ -14,6 +14,9 @@ export class ChangePasswordFormComponent implements OnInit {
   newpassword: string
   newpassword1: string
 
+  hide: boolean = false
+
+
   newPasswordError: ErrorMessage = {
     active: false,
     message: ""

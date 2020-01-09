@@ -29,7 +29,7 @@ export class GameslistComponent implements OnInit {
   userid: number
   orders: Array<String>
   order: String
-  reverse: Boolean
+  reverse: boolean
   subscription: Subscription
   filterText: string
   subscriptionUser: Subscription

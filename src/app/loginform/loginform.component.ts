@@ -28,6 +28,9 @@ export class LoginformComponent implements OnInit {
   @Input()
   password: string = ""
 
+  hide: boolean = false
+
+
   user: Observable<User>;
   private subscription: Subscription;
   private subscription2: Subscription;

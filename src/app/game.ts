@@ -19,6 +19,7 @@ export class GameMinusId{
   storeLink: string;
   trailerUrl: string;
   upvotes: number;
+  image: File;
 }
 
 export class GameMinusIdWithImage{

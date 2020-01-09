@@ -17,7 +17,8 @@ export class ResetPasswordConfirmationComponent implements OnInit {
   @Input()
   password1: string = ""
 
-  hide:boolean
+  hide: boolean = false
+
   subscription: Subscription;
   user: string;
   token: string;
