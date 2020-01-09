@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
 import { UserResponse, GameArrayResponse } from 'src/utils/interfaces';
 import { addUserToStore, updateUpvotedGameList, updateCreatedGameList } from './store/mystore.actions';
 import axios from '../utils/axios';
-
+import { BACKEND_URL } from '../utils/consts'
 
 
 @Component({
@@ -19,7 +19,7 @@ import axios from '../utils/axios';
 })
 export class AppComponent{
 
-  private baseUrl = 'http://localhost:8000/'
+  private baseUrl = BACKEND_URL
 
   constructor(private store : Store<iState>){
   }

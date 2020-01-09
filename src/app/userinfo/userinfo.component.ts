@@ -28,8 +28,6 @@ export class UserinfoComponent implements OnInit {
         this.img = response.data['image']
       })
     })
-    
-    console.log(this.img)
   }
 
   ngOnDestroy(){

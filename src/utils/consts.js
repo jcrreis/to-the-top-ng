@@ -1,5 +1,5 @@
 
-
+//STORE CONSTS
 export const UPDATE_GAME_LIST = "updateGameList"
 export const ADD_TO_GAME_LIST = "addToGameList"
 export const REMOVE_FROM_GAME_LIST = "removeFromGameList"
@@ -20,3 +20,8 @@ export const ADD_UPVOTE_TO_CREATED_GAME = "addUpvoteToCreatedGame"
 export const REMOVE_UPVOTE_FROM_CREATED_GAME = "removeUpvoteFromCreateGame"
 export const REMOVE_GAME_FROM_STORE = "removeGameFromStore"
 export const UPDATE_GAME_FROM_STORE = "updateGameFromStore"
+
+
+//BACKEND URL 
+
+export const BACKEND_URL = "https://to-the-top.herokuapp.com/"

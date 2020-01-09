@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 
 import axios from '../utils/axios'
+import { BACKEND_URL } from '../utils/consts'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignupService {
 
-  private signupUrl = 'http://localhost:8000/register/'
+  private signupUrl = BACKEND_URL+'register/'
 
   constructor() { }
 

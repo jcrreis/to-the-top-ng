@@ -4,15 +4,15 @@ import { Store } from '@ngrx/store'
 import { iState } from './store/mystore.reducer'
 import {  from, Observable } from 'rxjs';
 
-
+import {BACKEND_URL} from "../utils/consts"
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private loginUrl = 'http://localhost:8000/login/'
-  private userUrl = 'http://localhost:8000/user/'
+  private loginUrl = BACKEND_URL+'login/'
+  private userUrl = BACKEND_URL+'user/'
   constructor(private store : Store<iState>) { }
 
   login (username: String,password: String):Observable<any>{
@@ -27,7 +27,7 @@ export class LoginService {
   
   }
   userImage(userid: number): Observable<any>{
-    return from(axios.get("http://localhost:8000/users/"+userid))
+    return from(axios.get(BACKEND_URL+"users/"+userid))
   }
 
   changePassword( currentPassword: string, newPassword: string, newPassword1: string):Observable<any>{
@@ -36,14 +36,14 @@ export class LoginService {
       new_password1: newPassword,
       new_password2: newPassword1,
     }
-    const observable = from(axios.post('http://localhost:8000/password/change/', userData));
+    const observable = from(axios.post(BACKEND_URL+'password/change/', userData));
 
     return observable
   }
   //activate/<str:uidb64>/<str:token>/
   activateAccount(userid: string,token: string){
 
-    return from(axios.post('http://localhost:8000/users/activate/'+userid+'/'+token+'/'));
+    return from(axios.post(BACKEND_URL+'users/activate/'+userid+'/'+token+'/'));
   }
 
   getUser(){
@@ -54,7 +54,7 @@ export class LoginService {
     const data = {
       email: email,
     }
-    return from(axios.post('http://localhost:8000/password/reset/',data))
+    return from(axios.post(BACKEND_URL+'password/reset/',data))
   }
 
   resetPassword(id:string,token:string,password:string,password1:string){
@@ -64,7 +64,7 @@ export class LoginService {
       new_password1: password,
       new_password2: password1,
     }
-    return from(axios.post('http://localhost:8000/password/reset/confirm/',data))
+    return from(axios.post(BACKEND_URL+'password/reset/confirm/',data))
   }
 
 }

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { iState } from './store/mystore.reducer';
 import { updateGameList,addToGameList, updateSelectedGame, updateGameInGameList, addToUpvotedGameList, removeFromUpvotedGameList, updateCreatedGameList, removeFromCreatedGameList, addToCreatedGameList,removeGameFromStore, updateGameFromStore, upvoteGame, downvoteGame } from './store/mystore.actions';
 import { Router } from '@angular/router';
-
+import {BACKEND_URL} from '../utils/consts'
 
 
 @Injectable({
@@ -16,8 +16,8 @@ import { Router } from '@angular/router';
 
 export class GamesService {
 
-  private gamesUrl = 'http://localhost:8000/games/'
-  private upvoteUrl = 'http://localhost:8000/upvotes/games/'
+  private gamesUrl = BACKEND_URL + 'games/'
+  private upvoteUrl = BACKEND_URL + 'upvotes/games/'
 
   constructor(private store : Store<iState>, private router: Router) { }
 
@@ -63,13 +63,13 @@ export class GamesService {
   }
 
   deleteGame(id: Number){
-    axios.delete('http://localhost:8000/games/'+id).then(() => {
+    axios.delete(this.gamesUrl+id).then(() => {
       this.store.dispatch(removeGameFromStore({gameId: id}))
     })
   }
 
   updateGame(game: FormData,game_id:Number){
-    axios.put('http://localhost:8000/games/'+game_id, game).then((response) => {
+    axios.put( this.gamesUrl+game_id, game).then((response) => {
       const newGame: Game = response.data
       this.store.dispatch(updateGameFromStore({game: newGame}))
       this.router.navigate(['/'])

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import axios from '../utils/axios'
 import { Store } from '@ngrx/store'
 import { iState } from './store/mystore.reducer'
-
+import { BACKEND_URL } from '../utils/consts'
 import { removeUserFromStore, updateUpvotedGameList } from './store/mystore.actions';
 
 
@@ -11,7 +11,7 @@ import { removeUserFromStore, updateUpvotedGameList } from './store/mystore.acti
 })
 export class LogoutService {
 
-  private logoutUrl = 'http://localhost:8000/logout/'
+  private logoutUrl = BACKEND_URL+'logout/'
 
   constructor(private store : Store<iState>) { }
 

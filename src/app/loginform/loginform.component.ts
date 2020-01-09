@@ -11,7 +11,7 @@ import { addUserToStore, updateUpvotedGameList } from '../store/mystore.actions'
 import { first } from 'rxjs/operators';
 import axios from '../../utils/axios';
 import { Game } from '../game';
-
+import { BACKEND_URL } from '../../utils/consts'
 
 @Component({
   selector: 'app-loginform',
@@ -31,7 +31,7 @@ export class LoginformComponent implements OnInit {
   user: Observable<User>;
   private subscription: Subscription;
   private subscription2: Subscription;
-  private userUrl = 'http://localhost:8000/user/'
+  private userUrl = BACKEND_URL+'user/'
 
   loginError: ErrorMessage = {
     active: false,
@@ -60,7 +60,8 @@ export class LoginformComponent implements OnInit {
   login($event): void {
     $event.preventDefault()
     this.loginService.login(this.username, this.password)
-    .pipe(first(),).subscribe(() =>{
+    .pipe(first(),).subscribe((r) =>{
+      console.log(r)
       from(axios.get(this.userUrl)).pipe(first(),)
         .subscribe((response:any)=>{
           const dataU = response.data
@@ -71,7 +72,7 @@ export class LoginformComponent implements OnInit {
             image: dataU['image']
           }
           this.store.dispatch(addUserToStore({user: user}))
-      from(axios.get("http://localhost:8000/upvotes/users/"+user.id+"/games")).pipe(first(),)
+      from(axios.get(BACKEND_URL+"upvotes/users/"+user.id+"/games")).pipe(first(),)
         .subscribe((response:any)=>{  
           const upvotedGames: Array<Game> = response.data
           this.store.dispatch(updateUpvotedGameList({upvotedGameList: upvotedGames}))
