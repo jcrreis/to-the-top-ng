@@ -13,8 +13,10 @@
       <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
       </button>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="login($event)">Login</button>
-   <a href="/resetpassword" >Forgot your password ?</a>
+    <div class="lbuttons">
+      <button mat-raised-button color="primary" (click)="login($event)">Login</button>
+      <a href="/resetpassword" >Forgot your password ?</a>
+    </div>
   </mat-card>
 </div>
 
