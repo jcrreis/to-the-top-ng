@@ -5,6 +5,13 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
+app.use((req, res, next) => {
+  if (req.header('x-forwarded-proto') !== 'https') {
+    res.redirect(`https://${req.header('host')}${req.url}`)
+  } else {
+    next();
+  }
+});
 app.use(express.static('./dist/to-the-top-ng'));
 
 app.get('/*', function(req,res) {
