@@ -12,7 +12,6 @@ import { first } from 'rxjs/operators';
 import axios from '../../utils/axios';
 import { Game } from '../game';
 import { BACKEND_URL } from '../../utils/consts'
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-loginform',
@@ -42,7 +41,7 @@ export class LoginformComponent implements OnInit {
     message: ""
   }
 
-  constructor(private loginService : LoginService, private store : Store<iState>,private router:Router, private cookieService: CookieService) { }
+  constructor(private loginService : LoginService, private store : Store<iState>,private router:Router) { }
 
 
   ngOnInit() {
