@@ -12,6 +12,7 @@ import { first } from 'rxjs/operators';
 import axios from '../../utils/axios';
 import { Game } from '../game';
 import { BACKEND_URL } from '../../utils/consts'
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-loginform',
@@ -41,7 +42,7 @@ export class LoginformComponent implements OnInit {
     message: ""
   }
 
-  constructor(private loginService : LoginService, private store : Store<iState>,private router:Router) { }
+  constructor(private loginService : LoginService, private store : Store<iState>,private router:Router, private cookieService: CookieService) { }
 
 
   ngOnInit() {
@@ -64,9 +65,9 @@ export class LoginformComponent implements OnInit {
     $event.preventDefault()
     this.loginService.login(this.username, this.password)
     .pipe(first(),).subscribe((r) =>{
-      console.log(r)
       from(axios.get(this.userUrl)).pipe(first(),)
         .subscribe((response:any)=>{
+          console.log(response.data._csrf)
           const dataU = response.data
           const user: User = {
             id: dataU['pk'],
@@ -84,10 +85,11 @@ export class LoginformComponent implements OnInit {
     }
     )},
     (error) => {
-      this.loginError = {
-        active: true,
-        message: error.response.data.non_field_errors[0],
-      }
+      console.log(error)
+      // this.loginError = {
+      //   active: true,
+      //   message: error.response.data.non_field_errors[0],
+      // }
     })
   }
 }
