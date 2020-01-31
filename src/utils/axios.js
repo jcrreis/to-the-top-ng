@@ -6,8 +6,10 @@ axios.defaults.withCredentials = true;
 
 axios.defaults.headers.common = {
   'X-Requested-With': 'XMLHttpRequest',
-  'New-Header': '123'
+  'X-CSRF-TOKEN' : '12312'
 
 };
 export default axios;
 
+
+//document.querySelector('meta[name="csrf-token"]').getAttribute('content')
