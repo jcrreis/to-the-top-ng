@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+axios.defaults.withCredentials = true,
+axios.defaults.xsrfCookieName = 'XSRF-TOKEN',
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
-axios.defaults.withCredentials = true;
+
 
 export default axios;
 
