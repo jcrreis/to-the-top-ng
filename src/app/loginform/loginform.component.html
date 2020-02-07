@@ -14,8 +14,8 @@
       </button>
     </mat-form-field>
     <div class="lbuttons">
-      <button mat-raised-button color="primary" (click)="login($event)">Login</button>
-      <a href="/resetpassword" >Forgot your password ?</a>
+      <button mat-raised-button color="primary" [disabled]="shouldBeDisabled" (click)="login($event)">Login</button>
+      <a href="/resetpassword">Forgot your password ?</a>
     </div>
   </mat-card>
 </div>

@@ -3,6 +3,7 @@ import axios from '../utils/axios'
 import { Store } from '@ngrx/store'
 import { iState } from './store/mystore.reducer'
 import {  from, Observable } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 import {BACKEND_URL} from "../utils/consts"
 

@@ -30,6 +30,7 @@ export class LoginformComponent implements OnInit {
 
   hide: boolean = false
 
+  shouldBeDisabled: boolean = false
 
   user: Observable<User>;
   private subscription: Subscription;
@@ -62,11 +63,13 @@ export class LoginformComponent implements OnInit {
 
   login($event): void {
     $event.preventDefault()
+    this.shouldBeDisabled = true
+
     this.loginService.login(this.username, this.password)
     .pipe(first(),).subscribe((r) =>{
       from(axios.get(this.userUrl)).pipe(first(),)
         .subscribe((response:any)=>{
-          console.log(response.data._csrf)
+          console.log(response.d)
           const dataU = response.data
           const user: User = {
             id: dataU['pk'],
@@ -85,10 +88,11 @@ export class LoginformComponent implements OnInit {
     )},
     (error) => {
       console.log(error)
-      // this.loginError = {
-      //   active: true,
-      //   message: error.response.data.non_field_errors[0],
-      // }
+      this.shouldBeDisabled = false
+      this.loginError = {
+         active: true,
+         message: error.response.data.non_field_errors[0],
+     }
     })
   }
 }

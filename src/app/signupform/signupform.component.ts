@@ -32,6 +32,8 @@ export class SignupformComponent implements OnInit {
 
   games = {}
 
+  shouldBeDisabled : boolean = false;
+
   usernameError: ErrorMessage = {
     active: false,
     message: ""
@@ -76,6 +78,7 @@ export class SignupformComponent implements OnInit {
 
   signup($event): void {
     $event.preventDefault()
+    this.shouldBeDisabled = true
     const fd =  new FormData()
     fd.append('username',this.username)
     fd.append('password',this.password)
@@ -108,7 +111,7 @@ export class SignupformComponent implements OnInit {
           this.emailError.active = false
           this.usernameError.active = false
         }, 4500);
-
+        this.shouldBeDisabled = false;
       })
     }
     else{
@@ -117,8 +120,8 @@ export class SignupformComponent implements OnInit {
       setTimeout(() => { 
         this.passwordError.active = false
       }, 4500);
+      this.shouldBeDisabled = false;
     }
-
   }
 
   onFileSelected(event){

@@ -35,6 +35,8 @@ import { MaterialFileInputModule, FileInputConfig, NGX_MAT_FILE_INPUT_CONFIG } f
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
 import { EmbedVideo } from 'ngx-embed-video';
+import { CookieService } from 'ngx-cookie-service';
+
 
 export const config: FileInputConfig = {
   sizeUnit: 'Octet'
@@ -95,7 +97,7 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
     EmbedVideo.forRoot()
   ],
   // add with module injection
-providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config }],
+providers: [{ provide: NGX_MAT_FILE_INPUT_CONFIG, useValue: config },CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

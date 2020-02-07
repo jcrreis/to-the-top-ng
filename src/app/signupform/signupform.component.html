@@ -33,5 +33,5 @@
       <div class="image-preview" *ngIf="previewUrl">
           <img [src]="previewUrl"/>                 
       </div>
-      <button mat-raised-button color="primary" (click)="signup($event)">Sign up</button>
+      <button mat-raised-button color="primary" [disabled]="shouldBeDisabled" (click)="signup($event)">Sign up</button>
   </mat-card>

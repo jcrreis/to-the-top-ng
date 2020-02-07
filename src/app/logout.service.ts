@@ -16,6 +16,8 @@ export class LogoutService {
   constructor(private store : Store<iState>) { }
 
   logout (){
+   
+    
     axios.post(this.logoutUrl).then(() => {
        this.store.dispatch(removeUserFromStore())
        this.store.dispatch(updateUpvotedGameList({upvotedGameList: []}))

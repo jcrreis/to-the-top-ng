@@ -13,6 +13,7 @@ export class ChangePasswordFormComponent implements OnInit {
   currentpassword: string
   newpassword: string
   newpassword1: string
+  shouldBeDisabled: boolean = false
 
   hide: boolean = false
 
@@ -53,21 +54,23 @@ export class ChangePasswordFormComponent implements OnInit {
   }
 
   changePassword(){
+    debugger
     this.isCurrentPassInvalid = this.isCurrentPasswordInvalid()
     this.isNewPassInvalid = this.isNewPasswordInvalid()
     this.isNewPass1Invalid = this.isNewPassword1Invalid()
-
+    this.shouldBeDisabled = true
     if(!this.isFormInvalid()){
       if(this.newpassword !== this.newpassword1){
         this.newPasswordError = {
           active: true,
           message: "New passwords fields didn't match"
         }
+        this.shouldBeDisabled = false
       }
       else{
       this.loginService.changePassword(this.currentpassword,this.newpassword,this.newpassword1).
       subscribe(() => {
-        this.router.navigate['/user']
+        this.router.navigate(['/user'])
       },(error) =>{
         if(error.response.data['old_password'] !== undefined){
           this.oldPasswordError = {
@@ -75,8 +78,13 @@ export class ChangePasswordFormComponent implements OnInit {
             message: "Your current password is wrong."
           }
         }
+        this.shouldBeDisabled = false 
       })
       }
+    }
+    else{
+      this.shouldBeDisabled = false
+
     }
     }
 

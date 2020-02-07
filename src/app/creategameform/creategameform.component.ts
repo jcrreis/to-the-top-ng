@@ -18,6 +18,7 @@ export class CreategameformComponent implements OnInit {
   game: GameMinusIdWithImage 
   gameImage: File = null
   previewUrl:any = null;
+  shouldBeDisabled: boolean = false;
 
   nameError: ErrorMessage = {
     active: false,
@@ -74,7 +75,12 @@ export class CreategameformComponent implements OnInit {
   }
 
   addGame(): void{
+    this.shouldBeDisabled = true;
     const fd =  new FormData()
+
+    if(this.game.price == undefined)
+      this.shouldBeDisabled = false;
+
     fd.append('name',this.game.name)
     fd.append('price',this.game.price.toString())
     fd.append('description',this.game.description)
@@ -89,6 +95,7 @@ export class CreategameformComponent implements OnInit {
       this.router.navigate(['/']);
     },
     (error) => {
+      debugger
       if(error.response.data.name !== undefined){
         this.nameError = {
           active: true,
@@ -125,6 +132,7 @@ export class CreategameformComponent implements OnInit {
           message: error.response.data.image
         }
       }
+      this.shouldBeDisabled = false;
     })
   }
 

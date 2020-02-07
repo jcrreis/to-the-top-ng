@@ -28,7 +28,7 @@
   <div class="image-preview" *ngIf="previewUrl">
       <img [src]="previewUrl"/>                 
   </div>
-  <button mat-raised-button color="primary" (click)="editGame()">Edit Game</button>
+  <button mat-raised-button color="primary" [disabled]="shouldBeDisabled" (click)="editGame()">Edit Game</button>
   </mat-card>
 </div>
 

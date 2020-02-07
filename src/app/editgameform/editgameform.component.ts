@@ -25,6 +25,7 @@ export class EditgameformComponent implements OnInit {
   previewUrl:any = null;
   userLoggedIn: User;
   userLoaded: boolean = false
+  shouldBeDisabled: boolean = false
 
   constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
@@ -69,6 +70,7 @@ export class EditgameformComponent implements OnInit {
 
   editGame(): void {
     const fd =  new FormData()
+    this.shouldBeDisabled = true
     fd.append('name',this.game.name)
     fd.append('price',this.game.price.toString())
     fd.append('description',this.game.description)
