@@ -1,4 +1,6 @@
 
+import { isDevMode } from '@angular/core';
+
 //STORE CONSTS
 export const UPDATE_GAME_LIST = "updateGameList"
 export const ADD_TO_GAME_LIST = "addToGameList"
@@ -24,4 +26,15 @@ export const UPDATE_GAME_FROM_STORE = "updateGameFromStore"
 
 //BACKEND URL 
 
-export const BACKEND_URL = "https://to-the-top.herokuapp.com/"
+//export const BACKEND_URL = "https://to-the-top.herokuapp.com/"
+
+let url
+
+if(isDevMode()) {
+   url = "http://localhost:8000/"
+}
+else {
+  url = "https://to-the-top.herokuapp.com/"
+}
+
+export const BACKEND_URL = url;
