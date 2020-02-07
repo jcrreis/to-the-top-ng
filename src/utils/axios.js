@@ -5,6 +5,13 @@ axios.defaults.xsrfCookieName = 'csrftoken',
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+axios.interceptors.request.use(function (config) {
+  // Do something before request is sent
+  console.log(config)
+  console.log(document.cookie)
+  return config
+})
+
 export default axios;
 
 
