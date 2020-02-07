@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {  GameMinusIdWithImage } from '../game';
 import { GamesService } from '../games.service';
-import { FileInput } from 'ngx-material-file-input';
 import { iState } from '../store/mystore.reducer';
 import { Store } from '@ngrx/store';
 import { addToGameList, addToCreatedGameList } from '../store/mystore.actions';
 import { Router } from '@angular/router';
 import { ErrorMessage } from 'src/utils/interfaces';
-
+import { compressImage } from '../../utils/resizeBase64img'
 @Component({
   selector: 'app-creategameform',
   templateUrl: './creategameform.component.html',
@@ -44,6 +43,11 @@ export class CreategameformComponent implements OnInit {
     active: false,
     message: ""
   }
+
+  imageSizeError: ErrorMessage = {
+    active: false,
+    message: "Your image can't exceed 4MB"
+  }
   
   constructor(private gamesService: GamesService,private store: Store<iState>,private router: Router) {}
 
@@ -59,8 +63,15 @@ export class CreategameformComponent implements OnInit {
     }
   }
   onFileSelected(event){
+    let img = <File>event.target.files[0]
+
+    if(img.size <= 4000000){ 
     this.gameImage = <File>event.target.files[0]
     this.preview()
+    }
+    else{
+      this.imageSizeError.active = true 
+    }
   }
 
   preview(){
@@ -71,6 +82,9 @@ export class CreategameformComponent implements OnInit {
     reader.readAsDataURL(this.gameImage);
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
+      compressImage(this.previewUrl,450,337.5).then( imgR => {
+        this.previewUrl = imgR
+      })
     }
   }
 
@@ -86,7 +100,7 @@ export class CreategameformComponent implements OnInit {
     fd.append('description',this.game.description)
     fd.append('storeLink',this.game.storeLink)
     fd.append('trailerUrl',this.game.trailerUrl)
-    if(this.gameImage !== null) 
+    if(this.gameImage !== null)
       fd.append('image', this.gameImage , this.gameImage.name);
     //TODO ELSE?
     this.gamesService.addGame(fd).subscribe((response) => {
@@ -135,5 +149,4 @@ export class CreategameformComponent implements OnInit {
       this.shouldBeDisabled = false;
     })
   }
-
 }

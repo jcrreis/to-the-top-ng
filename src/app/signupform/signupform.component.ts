@@ -3,6 +3,7 @@ import { SignupService } from '../signup.service'
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ErrorMessage } from 'src/utils/interfaces';
+import { compressImage } from '../../utils/resizeBase64img'
 
 
 @Component({
@@ -47,6 +48,12 @@ export class SignupformComponent implements OnInit {
   passwordError: ErrorMessage = {
     active: false,
     message: "Passwords don't match"
+  }
+
+
+  imageSizeError: ErrorMessage = {
+    active: false,
+    message: "Your image can't exceed 4MB"
   }
   
 
@@ -125,8 +132,15 @@ export class SignupformComponent implements OnInit {
   }
 
   onFileSelected(event){
-    this.userImage = <File>event.target.files[0]
-    this.preview()
+    let img = <File>event.target.files[0]
+    
+    if(img.size <= 4000000){ 
+      this.userImage = <File>event.target.files[0]
+      this.preview()
+      }
+      else{
+        this.imageSizeError.active = true 
+      }
   }
 
   preview(){
@@ -137,6 +151,9 @@ export class SignupformComponent implements OnInit {
     reader.readAsDataURL(this.userImage);
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
+      compressImage(this.previewUrl,450,337.5).then( imgR => {
+        this.previewUrl = imgR
+      })
     }
   }
 

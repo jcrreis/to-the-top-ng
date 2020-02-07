@@ -7,6 +7,9 @@ import { iState } from '../store/mystore.reducer';
 import { getSelectedGame, getUser } from '../store/selectors';
 import { Subscription } from 'rxjs';
 import { User } from '../user';
+import { compressImage } from '../../utils/resizeBase64img'
+import { ErrorMessage } from 'src/utils/interfaces';
+
 
 @Component({
   selector: 'app-editgameform',
@@ -26,6 +29,11 @@ export class EditgameformComponent implements OnInit {
   userLoggedIn: User;
   userLoaded: boolean = false
   shouldBeDisabled: boolean = false
+
+  imageSizeError: ErrorMessage = {
+    active: false,
+    message: "Your image can't exceed 4MB"
+  }
 
   constructor(private router: Router,private route: ActivatedRoute,private gamesService : GamesService,private store : Store<iState>) { }
 
@@ -53,8 +61,15 @@ export class EditgameformComponent implements OnInit {
     this.gameSub.unsubscribe()
   }
   onFileSelected(event){
-    this.gameImage = <File>event.target.files[0]
-    this.preview()
+    let img = <File>event.target.files[0]
+    
+    if(img.size <= 4000000){ 
+      this.gameImage = <File>event.target.files[0]
+      this.preview()
+      }
+      else{
+        this.imageSizeError.active = true 
+      }
   }
 
   preview(){
@@ -65,7 +80,11 @@ export class EditgameformComponent implements OnInit {
     reader.readAsDataURL(this.gameImage);
     reader.onload = (_event) => {
       this.previewUrl = reader.result;
+      compressImage(this.previewUrl,450,337.5).then( imgR => {
+        this.previewUrl = imgR
+      })
     }
+    
   }
 
   editGame(): void {

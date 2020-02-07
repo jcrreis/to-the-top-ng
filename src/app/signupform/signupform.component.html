@@ -27,9 +27,11 @@
         </button>
       </mat-form-field>
       <mat-form-field appearance="outline">
+        <mat-label>Image</mat-label>
         <ngx-mat-file-input (change)="onFileSelected($event)" ></ngx-mat-file-input>
         <mat-icon matSuffix>folder</mat-icon>
       </mat-form-field>
+      <mat-error *ngIf="imageSizeError.active">{{imageSizeError.message}}</mat-error>
       <div class="image-preview" *ngIf="previewUrl">
           <img [src]="previewUrl"/>                 
       </div>
