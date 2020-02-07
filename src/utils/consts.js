@@ -1,5 +1,5 @@
 
-import {environment} from './environments/environment';
+import {environment} from 'src/environments/environment';
 
 //STORE CONSTS
 export const UPDATE_GAME_LIST = "updateGameList"
