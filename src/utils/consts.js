@@ -1,5 +1,5 @@
 
-import { isDevMode } from '@angular/core';
+import {environment} from './environments/environment';
 
 //STORE CONSTS
 export const UPDATE_GAME_LIST = "updateGameList"
@@ -30,7 +30,7 @@ export const UPDATE_GAME_FROM_STORE = "updateGameFromStore"
 
 let url
 
-if(isDevMode()) {
+if(!environment.production) {
    url = "http://localhost:8000/"
 }
 else {
