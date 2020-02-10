@@ -16,6 +16,8 @@ export class UpvoteBtnComponent implements OnInit {
   
   @Input()  gameId: Number
 
+  shouldBeDisabled: boolean = false
+
   isUpvoted: Boolean
   private subscription: Subscription;
   constructor(private router: Router,private gamesService : GamesService,private store : Store<iState>) { }
@@ -32,9 +34,11 @@ export class UpvoteBtnComponent implements OnInit {
 
   upvoteGame(event){
     event.preventDefault()
+    this.shouldBeDisabled = true
     this.gamesService.upvoteGame(this.gameId).subscribe((response) => {
       this.store.dispatch(upvoteGame({game: response.data}))
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
+      this.shouldBeDisabled = false
     },() => {
       this.router.navigate(['/login'])
     })
