@@ -34,7 +34,6 @@ export class UpvoteBtnComponent implements OnInit {
     event.preventDefault()
     this.gamesService.upvoteGame(this.gameId).subscribe((response) => {
       this.store.dispatch(upvoteGame({game: response.data}))
-      console.log(response.data)
       this.store.dispatch(addToUpvotedGameList({game:response.data}))
     },() => {
       this.router.navigate(['/login'])

@@ -25,7 +25,6 @@ export class UserAreaComponent implements OnInit {
         name: response.data['username'],
         image: null,
       }
-      console.log(response)
       this.store.dispatch(addUserToStore({user: user}))
     },() => {
       this.router.navigate(['/login'])

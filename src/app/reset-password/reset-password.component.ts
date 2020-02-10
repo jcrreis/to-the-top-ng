@@ -28,7 +28,6 @@ export class ResetPasswordComponent implements OnInit {
   submit(){
     this.subscription = this.loginService.resetPasswordRequest(this.email).subscribe((response:any) =>{
       this.message = response.data
-      console.log(response.data)
     })
   }
 

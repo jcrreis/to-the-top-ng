@@ -25,7 +25,6 @@ export class GamesService {
    axios.get<Game[]>(this.gamesUrl).then(response => {
     this.store.dispatch(updateGameList({gameList: response.data}))
    }).catch(error => {
-     console.log(error.msg)
    })
    
   }

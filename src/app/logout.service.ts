@@ -22,7 +22,6 @@ export class LogoutService {
        this.store.dispatch(removeUserFromStore())
        this.store.dispatch(updateUpvotedGameList({upvotedGameList: []}))
     }).catch((error) => {
-      console.log(error)
     })
 
   }

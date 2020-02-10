@@ -17,7 +17,6 @@ export class SignupService {
   signup (fd: FormData): Observable<any>{
     
    const observable= from(axios.post(this.signupUrl, fd))
-   console.log()
    return observable
      
   }

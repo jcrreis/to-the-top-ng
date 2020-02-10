@@ -24,7 +24,6 @@ export class UserinfoComponent implements OnInit {
     this.subscription = this.store.select(getUser).subscribe(user => {
       this.user = user
       this.loginService.userImage(this.user.id).subscribe((response) => {
-        console.log(response.data)
         this.img = response.data['image']
       })
     })

@@ -98,10 +98,8 @@ export class SignupformComponent implements OnInit {
           this.router.navigate(['/login'])
       },
       (error) => {
-        console.log(error.response.data)
         const data = error.response.data
         if(data.email !== undefined){
-          console.log(data.email)
           this.emailError = {
             active: true,
             message:'A ' + data.email

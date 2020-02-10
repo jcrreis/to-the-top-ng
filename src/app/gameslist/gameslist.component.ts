@@ -52,7 +52,6 @@ export class GameslistComponent implements OnInit {
     else{
       this.subscription = this.store.select(getGameList).subscribe(games => {
         this.games = games
-        console.log(this.games)
       })
     }
     this.reverse = false
