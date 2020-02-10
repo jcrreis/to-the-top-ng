@@ -69,6 +69,7 @@ export class LoginformComponent implements OnInit {
     .pipe(first(),).subscribe((r) =>{
       from(axios.get(this.userUrl)).pipe(first(),)
         .subscribe((response:any)=>{
+          console.log(response.headers)
           const dataU = response.data
           const user: User = {
             id: dataU['pk'],
